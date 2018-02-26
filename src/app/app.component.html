@@ -1,0 +1,30 @@
+<div className="content">
+  <Header></Header>
+
+  <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{ show: true }"
+       *ngIf="this.state.error" (hide)="closeErrorModal()">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Error</h4>
+          <button type="button" class="close pull-right" (click)="staticModal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div className="error-custom-message">
+            {this.state.error && this.state.error.message}
+          </div>
+          <div className="error-stack">
+            <pre>
+              {this.state.error && this.state.error.originalError.stack}
+            </pre>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-lightning" (click)="closeErrorModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

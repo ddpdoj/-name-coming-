@@ -1,0 +1,67 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">-name-coming-</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul className="nav navbar-nav">
+        <li class="dropdown" [ngClass]="{'active': PARTY_PATHS.indexOf(path) > -1}">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+            Party&nbsp;
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/party">Party Details and Achievements</a></li>
+            <li><a routerLink="/characters">Characters</a></li>
+          </ul>
+        </li>
+        <li class="dropdown" [ngClass]="{'active': GLOBAL_PATHS.indexOf(path) > -1}">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+            Global&nbsp;
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/scenarios">Scenarios</a></li>
+            <li><a routerLink="/prosperity">Prosperity and Treasure</a></li>
+            <li><a routerLink="/achievements">Global Achievements</a></li>
+          </ul>
+        </li>
+        <li class="dropdown" [ngClass]="{'active': path.startsWith('/utilities')}">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+            Utilities&nbsp;
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/utilities/scenarioLevel">Scenario Level</a></li>
+            <li><a routerLink="/utilities/enhancementCalculator">Enhancement Calculator</a></li>
+            <li><a routerLink="/utilities/monsterHealth">Monster Health</a></li>
+            <!-- <li role="separator" className="divider"></li> -->
+          </ul>
+        </li>
+      </ul>
+      <div class="navbar-btn">
+        <!-- <DropboxChooser></DropboxChooser> -->
+        <div>
+          <button type="button" class="btn-scoundrel" (click)="startSaveToDropbox()">
+            <span class="glyphicon glyphicon-cloud-upload"></span> Save
+          </button>
+        </div>
+        <div class="react-file-reader-input">
+          <input
+            #fileInput
+            type="file"
+            (change)="handleChange($event)"
+            (click)="fileInput.value = null" />
+          <button type="button" class="btn-brute">
+            <span class="glyphicon glyphicon-save-file"></span> Import
+          </button>
+        </div>
+        <div>
+          <button role="button" class="btn-cragheart" (click)="saveGame()">
+            <span class="glyphicon glyphicon-open-file"></span> Export
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

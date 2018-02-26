@@ -1,30 +1,39 @@
 <div className="content">
-  <Header></Header>
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
 
-  <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{ show: true }"
-       *ngIf="this.state.error" (hide)="closeErrorModal()">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title pull-left">Error</h4>
-          <button type="button" class="close pull-right" (click)="staticModal.hide()">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <app-modal *ngIf="showModal">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{modalData['title']}}</h4>
+      <button type="button" class="close pull-right" (click)="closeModal()">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="modalData['type'] === 'error'">
+        Your save file is ready to save to Dropbox.
+      </div>
+      <div *ngIf="modalData['type'] === 'dropboxSave'">
+        <div class="error-custom-message">
+            {{modalData['message']}}
         </div>
-        <div class="modal-body">
-          <div className="error-custom-message">
-            {this.state.error && this.state.error.message}
-          </div>
-          <div className="error-stack">
-            <pre>
-              {this.state.error && this.state.error.originalError.stack}
-            </pre>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn-lightning" (click)="closeErrorModal()">Close</button>
+        <div class="error-stack">
+          <pre>
+            {{modalData['stack']}}
+          </pre>
         </div>
       </div>
     </div>
-  </div>
+    <div class="modal-footer">
+      <button *ngIf="modalData['type'] === 'dropboxSave'"
+              type="button"
+              class="btn-scoundrel"
+              (click)="service.saveToDropbox(modalData['uri'])">
+        <span class="glyphicon glyphicon-cloud-upload"></span>
+        Save to Dropbox
+      </button>
+      <button type="button" class="btn-lightning" (click)="closeModal()">Close</button>
+    </div>
+  </app-modal>
 </div>

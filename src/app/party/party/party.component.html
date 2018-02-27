@@ -1,0 +1,92 @@
+<form class="container" [formGroup]="partyForm">
+  <div class="row">
+    <div class="col-xs-12 col-md-4">
+      <div class="form-group">
+        <label class="control-label">Party Name</label>
+        <input class="form-control"
+               type="text"
+               formControlName="name"
+               placeholder="Mercenaries need a catchy name"
+               [(ngModel)]="service.game.name" />
+      </div>
+      <div class="form-group">
+        <label>Current Location</label>
+        <input class="form-control"
+               type="text"
+               formControlName="location"
+               placeholder="Where are your intrepid adventurers?"
+               [(ngModel)]="service.game.partyLocation" />
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-8">
+      <div class="well well-lg reputation-well">
+        <div class="row">
+          <div class="col-xs-4 col-md-4">
+            <button class="btn btn-default btn-scoundrel display-block" (click)="service.changeReputation(1)">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <button class="btn btn-default btn-lightning display-block" (click)="service.changeReputation(-1)">
+              <span class="glyphicon glyphicon-minus"></span>
+            </button>
+          </div>
+          <div class="col-xs-4 col-md-4 text-center">
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                <span class="reputation-header">Reputation</span>
+              </div>
+              <div class="col-xs-12 col-md-12 reputation-label">
+                <label class="label-brute">{{service.game.reputation || 0}}</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-4 col-md-4 text-center">
+            <div class="row">
+              <div class="col-xs-12 col-md-12">
+                <span class="reputation-header">Shop Price Modifier</span>
+              </div>
+              <div class="col-xs-12 col-md-12 reputation-label">
+                <label class="label-brute">{{service.shopPriceModifier}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <label>Party Achievements</label>
+    </div>
+  </div>
+  <div class="row party-achievements-key">
+    <div class="col-xs-12 col-md-4 text-center">
+      <button class="btn btn-default btn-scoundrel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Achievement Unlocked
+    </div>
+    <div class="col-xs-12 col-md-14 text-center">
+      <button class="btn btn-default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Achievement Locked
+    </div>
+    <div class="col-xs-12 col-md-14 text-center">
+      <button class="btn btn-default btn-lightning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Achievement Lost
+    </div>
+  </div>
+  <div class="row achievements-container">
+      <div *ngFor="let achievement of achievements" class="col-xs-12 col-md-6 col-lg-4">
+        <button class="btn btn-default display-block"
+                [ngClass]="{'btn-scoundrel': service.game.partyAchievements[achievement] === 'true', 'btn-lightning': service.game.partyAchievements[achievement] === 'lost'}"
+                (click)="service.togglePartyAchievement(achievement)">
+                {{achievement}}
+        </button>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <div class="form-group">
+        <label class="control-label">Notes</label>
+        <textarea class="form-control party-text-area"
+                  formControlName="notes"
+                  placeholder="Use this text area to enter any information that you would like to keep"
+                  [(ngModel)]="service.game.partyNotes"></textarea>
+      </div>
+    </div>
+  </div>
+</form>

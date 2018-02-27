@@ -1,5 +1,4 @@
 import { MonsterHealth } from './monster-health.model';
-import { GLOBAL_ACHIEVEMENTS } from './global-achievements.model';
 
 export class Game {
   public name: string;
@@ -7,7 +6,7 @@ export class Game {
   public donations: number;
   public partyLocation: string;
   public partyNotes: string;
-  public partyAchievements: string;
+  public partyAchievements: any;
   public reputation: number;
   public globalAchievements: any;
   public scenariosUnlocked: any[];

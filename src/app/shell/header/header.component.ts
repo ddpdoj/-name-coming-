@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   public GLOBAL_PATHS = ['/scenarios', '/prosperity', '/achievements'];
   public PARTY_PATHS = ['/party', '/characters'];
 
-  constructor(private _service: MyCommonService) { }
+  constructor(public service: MyCommonService) { }
 
   ngOnInit() {
     // const win = typeof window === 'object' ? window : {};
@@ -26,35 +26,39 @@ export class HeaderComponent implements OnInit {
     // }
   }
 
-  public handleChange(e: Event) {
-    const file = e.target['files'][0];
-    const readAs = 'text';
+  // public handleChange(e: Event) {
+  //   const file = e.target['files'][0];
+  //   const readAs = 'text';
 
-    const reader = new FileReader();
+  //   const reader = new FileReader();
 
-    Observable.create(observer => {
-      reader.onload = () => {
-        observer.next(reader.result);
-        observer.complete();
-      };
-    }).subscribe(
-      result => this.loadGame(result)
-    );
+  //   Observable.create(observer => {
+  //     reader.onload = () => {
+  //       observer.next(reader.result);
+  //       observer.complete();
+  //     };
+  //   }).subscribe(
+  //     result => this.loadGame(result)
+  //   );
 
-    reader.readAsText(file);
-  }
+  //   reader.readAsText(file);
+  // }
 
-  public saveGame() {
-    this._service.saveGame();
-  }
+  // public saveGame() {
+  //   this._service.saveGame();
+  // }
 
-  public loadGame(result) {
-    const fileJSON = JSON.parse(result);
-    this._service.loadGame(fileJSON);
-  }
+  // public loadGame(result) {
+  //   const fileJSON = JSON.parse(result);
+  //   this._service.loadGame(fileJSON);
+  // }
 
-  public startSaveToDropbox(): void {
-    this._service.startSaveToDropbox();
-  }
+  // public loadFromDropbox(): void {
+
+  // }
+
+  // public startSaveToDropbox(): void {
+  //   this.service.startSaveToDropbox();
+  // }
 
 }

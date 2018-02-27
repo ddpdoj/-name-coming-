@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { MyCommonService } from './common/services/common.service';
-import { ModalBodies } from './common/constants/modal-bodies';
 
 @Component({
   selector: 'app-root',

@@ -1,0 +1,19 @@
+.thin-toolbar {
+  height: 12px !important;
+}
+
+.title {
+  position: relative;
+  left: 50%;
+  top: -4px;
+  transform: translateX(-50%);
+  font-family: 'Overlock SC', cursive;
+  font-size: 26px;
+}
+
+/deep/ svg {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  top: 5px;
+}

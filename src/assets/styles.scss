@@ -1,0 +1,31 @@
+@import 'crimson-brown.scss';
+
+.primary-light {
+  background-color: mat-color($primary, lighter);
+}
+.primary-dark {
+  background-color: mat-color($primary, darker);
+}
+.accent-light {
+  background-color: mat-color($accent, lighter);
+}
+.accent-dark {
+  background-color: mat-color($accent, darker);
+}
+
+.app-sidenav {
+  min-width: 240px;
+}
+.app-toolbar-filler {
+  flex: 1 1 auto;
+}
+.app-menu-button {
+  padding: 0;
+  min-width: 50px;
+}
+
+mat-card svg {
+  width: calc(11vw + 11vh);
+  height: calc(11vw + 11vh);;
+  font-size: inherit;
+}

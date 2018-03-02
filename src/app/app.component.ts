@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { Location } from '@angular/common';
+import { MatSidenav } from '@angular/material/sidenav';
 
-import { MyCommonService } from './common/services/common.service';
+import { CoreService } from './core/services/core.service';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +12,28 @@ import { MyCommonService } from './common/services/common.service';
 })
 export class AppComponent {
 
+  @ViewChild(MatSidenav) sideNavInstance: MatSidenav;
+
+  public path = '';
+  public isHome = false;
   public showModal = false;
   public modalData = {};
 
-  constructor(public service: MyCommonService) {
-    service.setModal.subscribe(
-      model => this.openModal(model)
-    );
-    service.closeModal.subscribe(
-      () => this.closeModal()
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    private location: Location,
+    private router: Router,
+    public service: CoreService
+  ) {
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.path = location.path();
+        this.isHome = this.path.includes('home');
+      }
+    });
+
+    service.subject.subscribe(
+      () => this.sideNavInstance.toggle()
     );
   }
 

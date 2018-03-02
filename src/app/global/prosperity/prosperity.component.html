@@ -1,4 +1,4 @@
-<div className="container">
+<div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-12">
       <p>&nbsp;</p>
@@ -11,15 +11,15 @@
           <h2>Prosperity</h2>
         </div>
         <div class="col-xs-12 col-md-12 prosperity-label-container text-center">
-          <label class="label-xxlarge label-brute">{{prosperityLevel}}</label>
+          <span class="label-xxlarge label-brute label label-default">{{prosperityLevel}}</span>
         </div>
         <div class="col-xs-6 col-md-6">
-          <button type="button" class="btn btn-default btn-lightning display-block" (click)="changeProsperity(-1)">
+          <button type="button" class="btn btn-default btn-lightning btn-block" (click)="changeProsperity(-1)">
             <span class="glyphicon glyphicon-minus"></span>
           </button>
         </div>
         <div class="col-xs-6 col-md-6">
-          <button type="button" class="btn btn-default btn-scoundrel display-block" (click)="changeProsperity(1)">
+          <button type="button" class="btn btn-default btn-scoundrel btn-block" (click)="changeProsperity(1)">
             <span class="glyphicon glyphicon-plus"></span>
           </button>
         </div>
@@ -41,15 +41,15 @@
           <h2>Sanctuary of the Great Oak</h2>
         </div>
         <div class="col-xs-12 col-md-12 prosperity-label-container text-center">
-          <label class="label-xxlarge label-brute">{{service.game['donations'] * 10}}</label>
+          <span class="label-xxlarge label-brute label label-default">{{service.game['donations'] * 10}}</span>
         </div>
         <div class="col-xs-6 col-md-6">
-          <button type="button" class="btn btn-default btn-lightning display-block" (click)="donateToGreatOak(-1)" disabled>
+          <button type="button" class="btn btn-default btn-lightning btn-block" (click)="donateToGreatOak(-1)" disabled>
             <span class="glyphicon glyphicon-minus"></span>
           </button>
         </div>
         <div class="col-xs-6 col-md-6">
-          <button type="button" class="btn btn-default btn-scoundrel display-block" (click)="donateToGreatOak(1)">
+          <button type="button" class="btn btn-default btn-scoundrel btn-block" (click)="donateToGreatOak(1)">
             <span class="glyphicon glyphicon-plus"></span>
           </button>
         </div>
@@ -107,7 +107,7 @@
   </div>
   <div class="row treasure-container">
     <div *ngFor="let treasure of treasures; let i = index" class="col-xs-12 col-md-4 col-lg-3">
-      <button class="btn btn-default display-block"
+      <button class="btn btn-default btn-block"
               [ngClass]="{'btn-doomstalker': availableTreasures.indexOf(i) >= 0, 'btn-scoundrel': game.treasuresUnlocked.indexOf(i) >= 0, 'btn-lightning': treasuresInCompleteScenarios.indexOf(i) >= 0}"
               (click)="toggleTreasure(i)">
         <span *ngIf="game.treasuresUnlocked.indexOf(i) >= 0">

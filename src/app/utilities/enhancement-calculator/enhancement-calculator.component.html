@@ -1,3 +1,199 @@
-<p>
-  enhancement-calculator works!
-</p>
+<div class="container">
+  <div class="enhancement-container">
+    <div class="row hidden-xs">
+      <div class="col-xs-12 col-md-12">
+        <p>&nbsp;</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-12 text-center instruction-label">
+        Enhancement Type
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let stickerType of stickerTypes" class="col-xs-6 col-md-3 enhancement-col">
+        <button type="button"
+                class="btn btn-default btn-block"
+                [ngClass]="{'btn-selected-light': enhancementState.stickerType === stickerType}"
+                (click)="stickerTypeClick(stickerType)">
+          {{stickerTypes['stickerType'].title}}&nbsp;
+          <img *ngIf="stickerType === 'attackHex'"
+               class="gloomhaven-icon-img"
+               width="17"
+               [src]="icons['generalAttackHex']" />
+          <span *ngIf="stickerType === 'otherEffect'">
+            <img class="gloomhaven-icon-img" width="17" [src]="icons['elementFire']" />&nbsp;
+            <img class="gloomhaven-icon-img" width="17" [src]="icons['generalJump']" />&nbsp;
+            <img class="gloomhaven-icon-img" width="17" [src]="icons['statusEffectMuddle']" />
+          </span>
+          <img *ngIf="stickerType !== 'attackHex' && stickerType !== 'otherEffect'"
+               class="gloomhaven-icon-img"
+               width="17"
+               [src]="icons['generalPlusOne']" />
+        </button>
+      </div>
+    </div>
+    <div *ngIf="enhancementState.stickerType === 'playerPlus1'">
+      <hr />
+      <div class="row">
+        <div class="col-xs-12 col-md-12 text-center instruction-label">
+          Ability Line
+        </div>
+      </div>
+      <div class="row">
+        <div *ngFor="let line of playerPlusOneAbilityLines" class="col-xs-6 col-md-2 enhancement-col">
+          <button type="button"
+                  class="btn btn-default btn-block"
+                  [ngClass]="{'btn-selected-light': enhancementState.playerPlusOneAbility === line}"
+                  (click)="playerPlusOneAbilityClick(line)">
+            {{playerPlusOneAbilityLines[line].title}}&nbsp;
+            <img class="gloomhaven-icon-img" width="17" [src]="icons[playerPlusOneAbilityLines[line].icon]" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="enhancementState.stickerType === 'summonPlus1'">
+    <hr />
+    <div class="row">
+      <div class="col-xs-12 col-md-12 text-center instruction-label">
+        Enhancement Effect
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let line of summonPlusOneAbilityLines" class="col-xs-6 col-md-3 enhancement-col">
+        <button type="button"
+                class="btn btn-default btn-block"
+                [ngClass]="{'btn-selected-light': enhancementState.summonPlusOneAbility === line}"
+                (click)="summonPlusOneAbilityClick(line)">
+          {{summonPlusOneAbilityLines[line].title}}&nbsp;
+          <img class="gloomhaven-icon-img" width="17" [src]="icons[summonPlusOneAbilityLines[line].icon]" />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="enhancementState.stickerType === 'attackHex'">
+    <hr />
+    <div class="row">
+      <div class="col-xs-12 col-md-12 text-center instruction-label">
+        Number of Hexes Currently Targeted with the Attack
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let hexes of numberOfHexes; let i = index" class="col-xs-4 col-md-3 enhancement-col">
+        <button type="button"
+                class="btn btn-default btn-block"
+                [ngClass]="{'btn-selected-light': enhancementState.numberOfCurrentlyTargetedHexes === i}"
+                (click)="numberOfHexesClick(i)">
+          {{i}}&nbsp;
+          <img class="gloomhaven-icon-img" width="17" [src]="icons['generalAttackHex']" />&nbsp;
+          ({{hexCost(i)}}g)
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="enhancementState.stickerType === 'otherEffect'">
+    <hr />
+    <div class="row">
+      <div class="col-xs-12 col-md-12 text-center instruction-label">
+        Base Effect
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let effect of baseOtherEffects"
+           class="enhancement-col"
+           [ngClass]="{'col-xs-12': effect === 'specificElement' || effect === 'anyElement' || effect === 'jump', 'col-xs-6': effect !== 'specificElement' && effect !== 'anyElement' && effect !== 'jump', 'col-md-6': effect === 'specificElement', 'col-md-3': effect !== 'specificElement'}">
+        <button type="button"
+                class="btn btn-default btn-block"
+                [ngClass]="{'btn-selected-light': enhancementState.baseOtherEffect === effect}"
+                (click)="baseOtherEffectClick(effect)">
+          {{baseOtherEffects[effect].title}}&nbsp;
+          <img *ngIf="effect !== 'specificElement'"
+               class="gloomhaven-icon-img"
+               width="17"
+               [src]="icons['generalAttackHex']" />
+          <span *ngIf="effect === 'specificElement'">
+            <img class="gloomhaven-icon-img" width="17" [src]="icons['elementAir']" />&nbsp;
+            <img class="gloomhaven-icon-img" width="17" [src]="icons['elementLight']" />&nbsp;
+            <img class="gloomhaven-icon-img" width="17" [src]="icons['elementIce']" />
+            <img class="gloomhaven-icon-img" width="17" [src]="icons['elementFire']" />&nbsp;
+            <img class="gloomhaven-icon-img" width="17" [src]="icons['elementDark']" />&nbsp;
+            <img class="gloomhaven-icon-img" width="17" [src]="icons['elementEarth']" />
+          </span>&nbsp;
+          ({{baseOtherEffects[effect].cost}}g)
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showOtherOptions()">
+    <hr />
+    <div class="row">
+      <div class="col-xs-12 col-md-12 text-center instruction-label">
+        Level of Ability Card
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let level of abilityCardLevels; let i = index" class="col-xs-4 col-md-2 col-lg-1 enhancement-col">
+        <button type="button"
+                class="btn btn-default btn-block"
+                [ngClass]="{'btn-selected-light': enhancementState.levelOfAbilityCard === i}"
+                (click)="levelClick(i)">
+          {{i}}&nbsp;(+{{levelCost[i - 1]}}g)
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showOtherOptions()">
+    <hr />
+    <div class="row">
+      <div class="col-xs-12 col-md-12 text-center instruction-label">
+        Number of Previous Enhancements to the Same Action
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let level of abilityCardLevels; let i = index" class="col-xs-6 col-md-6 enhancement-col">
+        <button type="button"
+                class="btn btn-default btn-block"
+                [ngClass]="{'btn-selected-light': enhancementState.numberOfPreviousEnhancements === i}"
+                (click)="previousEnhancementClick(i)">
+          {{i}}&nbsp;(+{{previousEnhancementCost[i]}}g)
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showOtherOptions() && enhancementState.stickerType !== 'attackHex'">
+    <hr />
+    <div class="row">
+      <div class="col-xs-12 col-md-12 text-center instruction-label">
+        Ability has Multple Targets
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-12 enhancement-col">
+        <button type="button"
+                class="btn btn-default btn-block"
+                [ngClass]="{'btn-selected-light': multipleTargets}"
+                (click)="multipleTargetClick()">
+          {{enhancementState.multipleTargets ? 'Yes' : 'No'}} (Double base cost)
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-xs-12 col-md-12 text-center instruction-label">
+      Enhancement Cost
+    </div>
+  </div>
+  <div class="row cost-row">
+    <div class="col-xs-12 col-md-12 enhancement-col text-center">
+      <span *ngIf="cost < 1" class="label-xxlarge label-brute label label-default">-</span>
+      <span *ngIf="cost > 0" class="label-xxlarge label-brute label label-default">{{cost}} gold</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-12 enhancement-col text-center instruction-bottom">
+      The total number of <strong>enhanced cards</strong> in a class's ability deck must be <strong>equal to or less than</strong> the prosperity level of the town.
+    </div>
+  </div>
+</div>

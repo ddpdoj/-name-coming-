@@ -1,75 +1,11 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">-name-coming-</a>
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul className="nav navbar-nav">
-        <li class="dropdown" [ngClass]="{'active': PARTY_PATHS.indexOf(path) > -1}">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-            Party&nbsp;
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="/party" data-toggle="collapse" data-target="#navbar">Party Details and Achievements</a></li>
-            <li><a routerLink="/party/characters" data-toggle="collapse" data-target="#navbar">Characters</a></li>
-          </ul>
-        </li>
-        <li class="dropdown" [ngClass]="{'active': GLOBAL_PATHS.indexOf(path) > -1}">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-            Global&nbsp;
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="/global/scenarios" data-toggle="collapse" data-target="#navbar">Scenarios</a></li>
-            <li><a routerLink="/global/prosperity" data-toggle="collapse" data-target="#navbar">Prosperity and Treasure</a></li>
-            <li><a routerLink="/global/achievements" data-toggle="collapse" data-target="#navbar">Global Achievements</a></li>
-          </ul>
-        </li>
-        <li class="dropdown" [ngClass]="{'active': path.startsWith('/utilities')}">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-            Utilities&nbsp;
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="/utilities/scenarioLevel" data-toggle="collapse" data-target="#navbar">Scenario Level</a></li>
-            <li><a routerLink="/utilities/enhancementCalculator" data-toggle="collapse" data-target="#navbar">Enhancement Calculator</a></li>
-            <li><a routerLink="/utilities/monsterHealth" data-toggle="collapse" data-target="#navbar">Monster Health</a></li>
-            <!-- <li role="separator" className="divider"></li> -->
-          </ul>
-        </li>
-      </ul>
-      <div class="navbar-btn">
-        <button type="button" class="btn btn-default btn-doomstalker" (click)="service.loadFromDropbox()">
-          <span glyph="glyphicon glyphicon-cloud-download"></span> Load
-        </button>
-        <div>
-          <button type="button" class="btn btn-default btn-scoundrel" (click)="service.startSaveToDropbox()">
-            <span class="glyphicon glyphicon-cloud-upload"></span> Save
-          </button>
-        </div>
-        <!-- <div class="react-file-reader-input">
-          <input
-            #fileInput
-            type="file"
-            (change)="handleChange($event)"
-            (click)="fileInput.value = null" />
-          <button type="button" class="btn-brute">
-            <span class="glyphicon glyphicon-save-file"></span> Import
-          </button>
-        </div>
-        <div>
-          <button role="button" class="btn-cragheart" (click)="saveGame()">
-            <span class="glyphicon glyphicon-open-file"></span> Export
-          </button>
-        </div> -->
-      </div>
-    </div>
-  </div>
-</nav>
+<mat-toolbar class="primary-dark thin-toolbar"></mat-toolbar>
+<mat-toolbar color="primary">
+  <span class="title">
+    <mat-icon svgIcon="logo"></mat-icon>&nbsp;
+    Vault of Secrets
+  </span>
+  <span class="app-toolbar-filler"></span>
+  <button mat-button *ngIf="!isHome" class="app-menu-button" (click)="toggleSidenav()">
+    <mat-icon class="example-icon">menu</mat-icon>
+  </button>
+</mat-toolbar>

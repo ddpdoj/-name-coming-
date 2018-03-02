@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 
 import { HeaderModule } from './header/header.module';
-import { FooterModule } from './footer/footer.module';
-import { AppModalModule } from './modal/modal.module';
+import { SidenavModule } from './sidenav/sidenav.module';
 
 @NgModule({
   exports: [
     HeaderModule,
-    FooterModule,
-    AppModalModule
+    SidenavModule
   ]
 })
 export class ShellModule { }

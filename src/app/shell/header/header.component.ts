@@ -1,64 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromEvent';
+import { Component, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material';
 
-import { MyCommonService } from '../../common/services/common.service';
+import { CoreService } from '../../core/services/core.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  public GLOBAL_PATHS = ['/scenarios', '/prosperity', '/achievements'];
-  public PARTY_PATHS = ['/party', '/characters'];
+  @Input() isHome = true;
 
-  constructor(public service: MyCommonService) { }
-
-  ngOnInit() {
-    // const win = typeof window === 'object' ? window : {};
-    // if (!win.File || !win.FileReader || !win.FileList || !win.Blob) {
-    //   console.warn(
-    //     '[react-file-reader-input] Some file APIs detected as not supported.' +
-    //     ' File reader functionality may not fully work.'
-    //   );
-    // }
+  constructor(
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer,
+    public service: CoreService
+  ) {
+    iconRegistry.addSvgIcon(
+      'logo',
+      sanitizer.bypassSecurityTrustResourceUrl(
+        '../../../assets/images/icons/ui/wings.svg'));
   }
 
-  // public handleChange(e: Event) {
-  //   const file = e.target['files'][0];
-  //   const readAs = 'text';
-
-  //   const reader = new FileReader();
-
-  //   Observable.create(observer => {
-  //     reader.onload = () => {
-  //       observer.next(reader.result);
-  //       observer.complete();
-  //     };
-  //   }).subscribe(
-  //     result => this.loadGame(result)
-  //   );
-
-  //   reader.readAsText(file);
-  // }
-
-  // public saveGame() {
-  //   this._service.saveGame();
-  // }
-
-  // public loadGame(result) {
-  //   const fileJSON = JSON.parse(result);
-  //   this._service.loadGame(fileJSON);
-  // }
-
-  // public loadFromDropbox(): void {
-
-  // }
-
-  // public startSaveToDropbox(): void {
-  //   this.service.startSaveToDropbox();
-  // }
+  public toggleSidenav(): void {
+    this.service.toggleSidenav();
+  }
 
 }

@@ -1,39 +1,9 @@
-<div className="content">
-  <app-header></app-header>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
-
-  <app-modal *ngIf="showModal">
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">{{modalData['title']}}</h4>
-      <button type="button" class="close pull-right" (click)="closeModal()">
-        <span>&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div *ngIf="modalData['type'] === 'error'">
-        Your save file is ready to save to Dropbox.
-      </div>
-      <div *ngIf="modalData['type'] === 'dropboxSave'">
-        <div class="error-custom-message">
-            {{modalData['message']}}
-        </div>
-        <div class="error-stack">
-          <pre>
-            {{modalData['stack']}}
-          </pre>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button *ngIf="modalData['type'] === 'dropboxSave'"
-              type="button"
-              class="btn-scoundrel"
-              (click)="service.saveToDropbox(modalData['uri'])">
-        <span class="glyphicon glyphicon-cloud-upload"></span>
-        Save to Dropbox
-      </button>
-      <button type="button" class="btn-lightning" (click)="closeModal()">Close</button>
-    </div>
-  </app-modal>
-</div>
+<mat-sidenav-container class="mat-typography" fullscreen>
+  <mat-sidenav mode="over" position="end" class="app-sidenav" color="primary">
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header [isHome]="isHome"></app-header>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

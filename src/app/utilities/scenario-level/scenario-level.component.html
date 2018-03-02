@@ -1,3 +1,24 @@
-<p>
-  scenario-level works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <p>&nbsp;</p>
+    </div>
+  </div>
+  <div *ngFor="let character of characters; let i = index" class="row scenario-level-row">
+    <div class="col-xs-1 col-md-1"></div>
+    <div *ngFor="let level of levelArray" class="col-xs-1 col-md-1">
+      <button type="button"
+              class="btn btn-default btn-block"
+              [ngClass]="{'btn-doomstalker': characterLevels[character] === level}"
+              (click)="levelButtonClick(character, level)">
+        {{level}}
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-10 col-md-11 text-center">
+      <h3>Normal scenario level</h3>
+      <span class="label-xxlarge label-brute label label-default">{{normalScenarioLevel()}}</span>
+    </div>
+  </div>
+</div>

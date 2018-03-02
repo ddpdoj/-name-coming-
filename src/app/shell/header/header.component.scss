@@ -1,17 +1,19 @@
-@import '../assets/_constants.scss';
-
-.navbar-btn {
-	div {
-		display: inline;
-	}
-
-	.btn {
-		margin-left: 5px;
-	}
+.thin-toolbar {
+  height: 12px !important;
 }
 
-@media (max-width: $breakpoint-smaller-desktop) {
-  nav .container {
-		width: 100%;
-	}
+.title {
+  position: relative;
+  left: 50%;
+  top: -4px;
+  transform: translateX(-50%);
+  font-family: 'Overlock SC', cursive;
+  font-size: 26px;
+}
+
+/deep/ svg {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  top: 5px;
 }

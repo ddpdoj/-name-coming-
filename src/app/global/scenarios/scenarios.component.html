@@ -1,4 +1,4 @@
-<div className="container scenarios-container">
+<div class="container scenarios-container">
   <div class="row">
     <div class="col-xs-12">
       <p>&nbsp;</p>
@@ -6,36 +6,72 @@
   </div>
   <div class="row scenario-key">
     <div class="col-xs-12 col-md-4 text-center">
-      <button type="button" class="btn btn-default btn-scoundrel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Scenario successfully complete
+      <button type="button" class="btn btn-default btn-scoundrel" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Scenario successfully complete
     </div>
     <div class="col-xs-12 col-md-4 text-center">
-      <button type="button" class="btn btn-default btn-doomstalker">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Scenario unlocked
+      <button type="button" class="btn btn-default btn-doomstalker" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Scenario unlocked
     </div>
     <div class="col-xs-12 col-md-4 text-center">
-      <button type="button" class="btn btn-default btn-lightning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Ineligible for scenario
+      <button type="button" class="btn btn-default btn-lightning" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Ineligible for scenario
     </div>
   </div>
   <div class="row">
-    <!-- {campaignMissionColumns} -->
+    <div *ngFor="let scenario of campaignScenarios; let i = index" [class]="'col-md-4 col-lg-3 ' + scenario.colClass">
+      <button type="button"
+              [class]="'btn btn-default btn-block ' + scenario.buttonClass"
+              (click)="toggleScenarioClick(i)"
+        {{scenario.buttonText}}>
+      </button>
+    </div>
   </div>
   <hr />
   <div class="row">
-    <!-- {personalQuestColumns} -->
+    <div *ngFor="let scenario of personalQuests; let i = index" [class]="'col-md-4 col-lg-3 ' + scenario.colClass">
+      <button type="button"
+              [class]="'btn btn-default btn-block ' + scenario.buttonClass"
+              (click)="toggleScenarioClick(i)"
+        {{scenario.buttonText}}>
+      </button>
+    </div>
   </div>
   <hr />
   <div class="row">
-    <!-- {randomScenarioColumns} -->
+    <div *ngFor="let scenario of randomScenarios; let i = index" [class]="'col-md-4 col-lg-3 ' + scenario.colClass">
+      <button type="button"
+              [class]="'btn btn-default btn-block ' + scenario.buttonClass"
+              (click)="toggleScenarioClick(i)"
+        {{scenario.buttonText}}>
+      </button>
+    </div>
   </div>
   <hr />
   <div class="row">
-    <!-- {otherColumns} -->
+    <div *ngFor="let scenario of otherScenarios; let i = index" [class]="'col-md-4 col-lg-3 ' + scenario.colClass">
+      <button type="button"
+              [class]="'btn btn-default btn-block ' + scenario.buttonClass"
+              (click)="toggleScenarioClick(i)"
+        {{scenario.buttonText}}>
+      </button>
+    </div>
   </div>
   <hr />
   <div class="row">
-    <!-- {kickstarterColumns} -->
+    <div *ngFor="let scenario of kickstarterScenarios; let i = index" [class]="'col-md-4 col-lg-3 ' + scenario.colClass">
+      <button type="button"
+              [class]="'btn btn-default btn-block ' + scenario.buttonClass"
+              (click)="toggleScenarioClick(i)"
+        {{scenario.buttonText}}>
+      </button>
+    </div>
   </div>
   <hr />
   <div class="row">
-    <!-- {soloColumns} -->
+    <div *ngFor="let scenario of soloScenarios; let i = index" [class]="'col-md-4 col-lg-3 ' + scenario.colClass">
+      <button type="button"
+              [class]="'btn btn-default btn-block ' + scenario.buttonClass"
+              (click)="toggleScenarioClick(i)"
+        {{scenario.buttonText}}>
+      </button>
+    </div>
   </div>
 </div>

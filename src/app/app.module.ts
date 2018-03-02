@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
-import { ModalModule } from 'ngx-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app.routing.module';
 import { ShellModule } from './shell/shell.module';
 import { MyCommonService } from './common/services/common.service';
+import { CoreService } from './core/services/core.service';
 
 @NgModule({
   declarations: [
@@ -17,12 +17,17 @@ import { MyCommonService } from './common/services/common.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
     AppRoutingModule,
     ShellModule
   ],
   providers: [
-    MyCommonService
+    MyCommonService,
+    CoreService
   ],
   bootstrap: [
     AppComponent

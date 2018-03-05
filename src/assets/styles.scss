@@ -1,13 +1,18 @@
 @import 'crimson-brown.scss';
 
 .primary-light {
-  background-color: mat-color($primary, lighter);
+  background-color: mat-color($primary, lighter, 0.2);
 }
 .primary-dark {
   background-color: mat-color($primary, darker);
 }
 .accent-light {
-  background-color: mat-color($accent, lighter);
+  background-color: mat-color($accent, lighter, 0.2);
+
+  &.reputation-value {
+    color: mat-color($primary);
+    font-size: 48px;
+  }
 }
 .accent-dark {
   background-color: mat-color($accent, darker);
@@ -28,4 +33,15 @@ mat-card svg {
   width: calc(11vw + 11vh);
   height: calc(11vw + 11vh);;
   font-size: inherit;
+}
+
+.mat-tab-nav-bar .mat-tab-links {
+  display: flex;
+
+  .mat-tab-link {
+    flex: 1 1 100%;
+  }
+  .mat-tab-link:not(.mat-tab-disabled):focus {
+    background-color: inherit;
+  }
 }

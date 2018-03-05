@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-md-6">
+      <label class="control-label">Party Achievements</label>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 30px;">
+    <div class="col-xs-4 col-md-4 party-achievements-key" style="padding-right: 5px;">
+      <button type="button" class="btn btn-default btn-block" disabled>Locked</button>
+    </div>
+    <div class="col-xs-4 col-md-4 party-achievements-key" style="padding-right: 5px; padding-left: 5px;">
+      <button type="button" class="btn btn-default btn-block btn-scoundrel" disabled>Unlocked</button>
+    </div>
+    <div class="col-xs-4 col-md-4 party-achievements-key" style="padding-left: 5px;">
+      <button type="button" class="btn btn-default btn-block btn-lightning" disabled>Lost</button>
+    </div>
+  </div>
+  <div class="row achievements-container">
+      <div *ngFor="let achievement of achievements" class="col-xs-12 col-md-6 col-lg-4">
+        <button class="btn btn-default btn-block"
+                [ngClass]="{'btn-scoundrel': service.game.partyAchievements[achievement] === 'true', 'btn-lightning': service.game.partyAchievements[achievement] === 'lost'}"
+                (click)="service.togglePartyAchievement(achievement)">
+                {{achievement}}
+        </button>
+      </div>
+  </div>
+</div>

@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CharactersComponent } from './characters.component';
+import { ScenariosComponent } from './scenarios.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CharactersComponent
+    component: ScenariosComponent
   }
 ];
 
@@ -17,7 +17,7 @@ const routes: Routes = [
     CommonModule
   ],
   declarations: [
-    CharactersComponent
+    ScenariosComponent
   ]
 })
-export class CharactersModule { }
+export class ScenariosModule { }

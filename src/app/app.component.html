@@ -4,6 +4,17 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <app-header [isHome]="isHome"></app-header>
-    <router-outlet></router-outlet>
+    <nav *ngIf="navLinks.length > 0" mat-tab-nav-bar color="primary">
+      <a *ngFor="let link of navLinks"
+         mat-tab-link
+         routerLinkActive #rla="routerLinkActive"
+         [routerLink]="link.path"
+         [active]="rla.isActive">
+        <span>{{link.title}}</span>
+      </a>
+    </nav>
+    <div class="accent-light">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,0 +1,41 @@
+:host {
+  padding: 10px;
+  display: block
+}
+
+mat-card.top-margin {
+  margin-top: 10px;
+}
+
+mat-grid-tile {
+  & .tile-left, & .tile-right, & .tile-center {
+    width: 100%;
+  }
+  & .tile-left .arrow-size {
+    position: relative;
+
+    & mat-icon {
+      position: absolute;
+      left: 20%;
+      font-size: 80px;
+    }
+  }
+  & .tile-right .arrow-size {
+    position: relative;
+
+    & mat-icon {
+      position: absolute;
+      right: 20%;
+      font-size: 80px;
+    }
+  }
+  & .tile-center {
+    text-align: center;
+
+    & .rep-size {
+      width: 72px;
+      height: 72px;
+      font-size: 48px;
+    }
+  }
+}

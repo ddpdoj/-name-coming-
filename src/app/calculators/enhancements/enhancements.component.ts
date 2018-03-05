@@ -16,11 +16,11 @@ class Types {
 }
 
 @Component({
-  selector: 'app-enhancement-calculator',
-  templateUrl: './enhancement-calculator.component.html',
-  styleUrls: ['./enhancement-calculator.component.scss']
+  selector: 'app-enhancements',
+  templateUrl: './enhancements.component.html',
+  styleUrls: ['./enhancements.component.scss']
 })
-export class EnhancementCalculatorComponent {
+export class EnhancementsComponent {
 
   public cost: number;
   public enhancementState: EnhancementTypes;

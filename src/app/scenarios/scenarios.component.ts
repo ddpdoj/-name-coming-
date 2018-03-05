@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { CoreService } from '../../core/services/core.service';
-import { Game } from '../../core/models/game.model';
-import { Scenerio, SCENARIOS } from '../../core/constants/scenerios';
+import { CoreService } from '../core/services/core.service';
+import { Game } from '../core/models/game.model';
+import { Scenerio, SCENARIOS } from '../core/constants/scenerios';
 
 @Component({
   selector: 'app-scenarios',

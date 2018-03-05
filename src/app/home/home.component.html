@@ -1,6 +1,6 @@
 <mat-grid-list cols="2" rowHeight="fit" gutterSize="20px">
   <mat-grid-tile class="mat-elevation-z2" *ngFor="let tile of tiles" colspan="1" rowspan="1">
-    <mat-card class="relative-position" (click)="service.toggleSidenav()">
+    <mat-card class="relative-position" [routerLink]="tile.link">
       <mat-card-content>
         <mat-icon color="accent"
                   class="card-icon"

@@ -14,12 +14,12 @@ export class HomeComponent {
   // @HostBinding('class.accent-light') accentClass = true;
 
   public tiles = [
-    { id: 'party', icon: 'party' },
-    { id: 'achievements', icon: 'achievement' },
-    { id: 'scenarios', icon: 'map' },
-    { id: 'calculator', icon: 'calculator' },
-    { id: 'monsters', icon: 'monster' },
-    { id: 'los-ai', icon: 'los-ai' }
+    { id: 'party', icon: 'party', link: '/party' },
+    { id: 'achievements', icon: 'achievement', link: '/achievements' },
+    { id: 'scenarios', icon: 'map', link: '/global' },
+    { id: 'calculator', icon: 'calculator', link: '/calculators' },
+    { id: 'monsters', icon: 'monster', link: null },
+    { id: 'los-ai', icon: 'los-ai', link: null }
   ];
 
   constructor(

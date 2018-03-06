@@ -1,0 +1,122 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <p>&nbsp;</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 prosperity-checks-container">
+      <div class="row">
+        <div class="col-xs-12 col-md-12 text-center">
+          <h2>Prosperity</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 prosperity-label-container text-center">
+          <span class="label-xxlarge label-brute label label-default">{{prosperityLevel}}</span>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <button type="button" class="btn btn-default btn-lightning btn-block" (click)="changeProsperity(-1)">
+            <span class="glyphicon glyphicon-minus"></span>
+          </button>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <button type="button" class="btn btn-default btn-scoundrel btn-block" (click)="changeProsperity(1)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </div>
+      </div>
+      <div class="row prosperity-checks-list">
+        <div class="col-xs-12 col-md-12">
+          <span *ngFor="let i of game.prosperity">
+            <span *ngIf="[4, 9, 15, 22, 30, 39, 50, 64].indexOf(i) > -1" class="glyphicon glyphicon-check milestone"></span>
+            <span *ngIf="[4, 9, 15, 22, 30, 39, 50, 64].indexOf(i) === -1" class="glyphicon glyphicon-check"></span>
+          </span>
+          <span *ngFor="let count of prosperityCountArray">
+            <span *ngIf="[4, 9, 15, 22, 30, 39, 50, 64].indexOf(count) > -1" class="glyphicon glyphicon-unchecked milestone"></span>
+            <span *ngIf="[4, 9, 15, 22, 30, 39, 50, 64].indexOf(count) === -1" class="glyphicon glyphicon-unchecked"></span>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-12 text-center">
+          <h2>Sanctuary of the Great Oak</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 prosperity-label-container text-center">
+          <span class="label-xxlarge label-brute label label-default">{{service.game['donations'] * 10}}</span>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <button type="button" class="btn btn-default btn-lightning btn-block" (click)="donateToGreatOak(-1)" disabled>
+            <span class="glyphicon glyphicon-minus"></span>
+          </button>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <button type="button" class="btn btn-default btn-scoundrel btn-block" (click)="donateToGreatOak(1)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </div>
+      </div>
+      <div class="row prosperity-checks-list">
+        <div class="col-xs-12 col-md-12">
+          <span *ngFor="let i of donationsArray">
+            <span *ngIf="donationMilestones.indexOf(i) > -1" class="glyphicon glyphicon-check milestone"></span>
+            <span *ngIf="donationMilestones.indexOf(i) === -1" class="glyphicon glyphicon-check"></span>
+          </span>
+          <span *ngFor="let j of donationsCountArray">
+            <span *ngIf="donationMilestones.indexOf(j) > -1" class="glyphicon glyphicon-unchecked milestone"></span>
+            <span *ngIf="donationMilestones.indexOf(j) === -1" class="glyphicon glyphicon-unchecked"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <table class="table-striped table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>Item Numbers</th>
+            <th>Unlocked</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let itemLevel of itemLevels; let i = index">
+            <td>{{itemLevel}}</td>
+            <td><span *ngIf="level > i + 1" class="glyphicon glyphicon-check"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-12 text-center">
+      <h2>Treasure</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <p>&nbsp;</p>
+    </div>
+  </div>
+  <div class="row treasure-key">
+    <div class="col-xs-12 col-md-4 text-center">
+      <button type="button" class="btn btn-default btn-scoundrel" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Treasure discovered
+    </div>
+    <div class="col-xs-12 col-md-4 text-center">
+      <button type="button" class="btn btn-default btn-doomstalker" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Treasure in available scenario
+    </div>
+    <div class="col-xs-12 col-md-4 text-center">
+      <button type="button" class="btn btn-default btn-lightning" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Missed Treasure in complete scenario
+    </div>
+  </div>
+  <div class="row treasure-container">
+    <div *ngFor="let treasure of treasures; let i = index" class="col-xs-12 col-md-4 col-lg-3">
+      <button class="btn btn-default btn-block"
+              [ngClass]="{'btn-doomstalker': availableTreasures.indexOf(i) >= 0, 'btn-scoundrel': game.treasuresUnlocked.indexOf(i) >= 0, 'btn-lightning': treasuresInCompleteScenarios.indexOf(i) >= 0}"
+              (click)="toggleTreasure(i)">
+        <span *ngIf="game.treasuresUnlocked.indexOf(i) >= 0">
+          {{i + ' - ' + treasures[i].title}}
+        </span>
+        <span *ngIf="treasuresInCompleteScenarios.indexOf(i) >= 0">
+          {{i + ' - Missed in scenario ' + (treasureScenarios[i] >= 96 && treasureScenarios[i] <= 105 ? ('K' + (treasureScenarios[i] - 95)) : (treasureScenarios[i] + ''))}}
+        </span>
+      </button>
+    </div>
+  </div>
+</div>

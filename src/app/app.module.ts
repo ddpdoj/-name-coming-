@@ -32,7 +32,6 @@ import { CoreService } from './core/services/core.service';
     ShellModule
   ],
   providers: [
-    CoreService,
     CoreService
   ],
   bootstrap: [

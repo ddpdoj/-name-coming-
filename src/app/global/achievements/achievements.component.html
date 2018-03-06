@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row global-achievement-key">
+    <div class="col-xs-12 col-md-6 text-center">
+      <button type="button" class="btn btn-default btn-scoundrel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Achievement complete
+    </div>
+    <div class="col-xs-12 col-md-6 text-center">
+      <button type="button" class="btn btn-default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Achievement incomplete (or lost)
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-12 achievements-container">
+      <ng-container *ngFor="let possibleAchievement of possibleAchievements; let i = index;">
+        <div class="row">
+            <div *ngFor="let achievement of possibleAchievement" class="col-xs-12 col-md-6 col-lg-4">
+              <button type="button"
+                      class="btn btn-default btn-block"
+                      [ngClass]="{'btn-scoundrel': globalAchievements[achievement]}"
+                      (click)="service.toggleGlobalAchievement()">{{achievement}}</button>
+            </div>
+        </div>
+        <hr *ngIf="i < possibleAchievements.length - 1" />
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,122 +1,182 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-12">
-      <p>&nbsp;</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-md-8 prosperity-checks-container">
-      <div class="row">
-        <div class="col-xs-12 col-md-12 text-center">
-          <h2>Prosperity</h2>
-        </div>
-        <div class="col-xs-12 col-md-12 prosperity-label-container text-center">
-          <span class="label-xxlarge label-brute label label-default">{{prosperityLevel}}</span>
-        </div>
-        <div class="col-xs-6 col-md-6">
-          <button type="button" class="btn btn-default btn-lightning btn-block" (click)="changeProsperity(-1)">
-            <span class="glyphicon glyphicon-minus"></span>
-          </button>
-        </div>
-        <div class="col-xs-6 col-md-6">
-          <button type="button" class="btn btn-default btn-scoundrel btn-block" (click)="changeProsperity(1)">
-            <span class="glyphicon glyphicon-plus"></span>
-          </button>
-        </div>
+
+<mat-card>
+  <mat-grid-list cols="3" rowHeight="24px">
+    <mat-grid-tile colspan="1" rowspan="1">
+      <div class="tile-center card-header">
+        <mat-card-header class="centered-card-header">
+          <mat-card-title>Prosperity</mat-card-title>
+        </mat-card-header>
       </div>
-      <div class="row prosperity-checks-list">
-        <div class="col-xs-12 col-md-12">
-          <span *ngFor="let i of game.prosperity">
-            <span *ngIf="[4, 9, 15, 22, 30, 39, 50, 64].indexOf(i) > -1" class="glyphicon glyphicon-check milestone"></span>
-            <span *ngIf="[4, 9, 15, 22, 30, 39, 50, 64].indexOf(i) === -1" class="glyphicon glyphicon-check"></span>
-          </span>
-          <span *ngFor="let count of prosperityCountArray">
-            <span *ngIf="[4, 9, 15, 22, 30, 39, 50, 64].indexOf(count) > -1" class="glyphicon glyphicon-unchecked milestone"></span>
-            <span *ngIf="[4, 9, 15, 22, 30, 39, 50, 64].indexOf(count) === -1" class="glyphicon glyphicon-unchecked"></span>
-          </span>
-        </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <div class="tile-center card-header">
+        <mat-card-header class="centered-card-header">
+          <mat-card-title>Shop Items</mat-card-title>
+        </mat-card-header>
       </div>
-      <div class="row">
-        <div class="col-xs-12 col-md-12 text-center">
-          <h2>Sanctuary of the Great Oak</h2>
-        </div>
-        <div class="col-xs-12 col-md-12 prosperity-label-container text-center">
-          <span class="label-xxlarge label-brute label label-default">{{service.game['donations'] * 10}}</span>
-        </div>
-        <div class="col-xs-6 col-md-6">
-          <button type="button" class="btn btn-default btn-lightning btn-block" (click)="donateToGreatOak(-1)" disabled>
-            <span class="glyphicon glyphicon-minus"></span>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="3" rowHeight="54px">
+    <mat-grid-tile colspan="1" rowspan="1">
+      <div class="tile-center">
+        <mat-card-content>
+          <button mat-fab disableRipple="true" color="accent" class="accent-light rep-size">
+            {{prosperityLevel}}
           </button>
-        </div>
-        <div class="col-xs-6 col-md-6">
-          <button type="button" class="btn btn-default btn-scoundrel btn-block" (click)="donateToGreatOak(1)">
-            <span class="glyphicon glyphicon-plus"></span>
-          </button>
-        </div>
+        </mat-card-content>
       </div>
-      <div class="row prosperity-checks-list">
-        <div class="col-xs-12 col-md-12">
-          <span *ngFor="let i of donationsArray">
-            <span *ngIf="donationMilestones.indexOf(i) > -1" class="glyphicon glyphicon-check milestone"></span>
-            <span *ngIf="donationMilestones.indexOf(i) === -1" class="glyphicon glyphicon-check"></span>
-          </span>
-          <span *ngFor="let j of donationsCountArray">
-            <span *ngIf="donationMilestones.indexOf(j) > -1" class="glyphicon glyphicon-unchecked milestone"></span>
-            <span *ngIf="donationMilestones.indexOf(j) === -1" class="glyphicon glyphicon-unchecked"></span>
-          </span>
-        </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <div class="tile-center">
+        <mat-icon class="rep-modifier">arrow_forward</mat-icon>
       </div>
-    </div>
-    <div class="col-xs-12 col-md-4">
-      <table class="table-striped table-condensed table-hover">
-        <thead>
-          <tr>
-            <th>Item Numbers</th>
-            <th>Unlocked</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let itemLevel of itemLevels; let i = index">
-            <td>{{itemLevel}}</td>
-            <td><span *ngIf="level > i + 1" class="glyphicon glyphicon-check"></span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-md-12 text-center">
-      <h2>Treasure</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-md-12">
-      <p>&nbsp;</p>
-    </div>
-  </div>
-  <div class="row treasure-key">
-    <div class="col-xs-12 col-md-4 text-center">
-      <button type="button" class="btn btn-default btn-scoundrel" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Treasure discovered
-    </div>
-    <div class="col-xs-12 col-md-4 text-center">
-      <button type="button" class="btn btn-default btn-doomstalker" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Treasure in available scenario
-    </div>
-    <div class="col-xs-12 col-md-4 text-center">
-      <button type="button" class="btn btn-default btn-lightning" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> Missed Treasure in complete scenario
-    </div>
-  </div>
-  <div class="row treasure-container">
-    <div *ngFor="let treasure of treasures; let i = index" class="col-xs-12 col-md-4 col-lg-3">
-      <button class="btn btn-default btn-block"
-              [ngClass]="{'btn-doomstalker': availableTreasures.indexOf(i) >= 0, 'btn-scoundrel': game.treasuresUnlocked.indexOf(i) >= 0, 'btn-lightning': treasuresInCompleteScenarios.indexOf(i) >= 0}"
-              (click)="toggleTreasure(i)">
-        <span *ngIf="game.treasuresUnlocked.indexOf(i) >= 0">
-          {{i + ' - ' + treasures[i].title}}
-        </span>
-        <span *ngIf="treasuresInCompleteScenarios.indexOf(i) >= 0">
-          {{i + ' - Missed in scenario ' + (treasureScenarios[i] >= 96 && treasureScenarios[i] <= 105 ? ('K' + (treasureScenarios[i] - 95)) : (treasureScenarios[i] + ''))}}
-        </span>
-      </button>
-    </div>
-  </div>
-</div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <div class="tile-center">
+        <mat-chip-list>
+          <mat-chip class="items" selected="true" removable="false">001{{itemLevels[prosperityLevel - 1]}}</mat-chip>
+        </mat-chip-list>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="1" rowHeight="20px">
+    <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="9" [rowHeight]="nextProsperityCounter.length > 0 ? '34px' : '68px'">
+    <mat-grid-tile colspan="1" [rowspan]="nextProsperityCounter.length > 0 ? 2 : 1">
+      <div *ngIf="prosperityLevel < 9 && this.service.game['prosperity'] > prosperityMilestones[this.prosperityLevel - 1]"
+           class="tile-center prosperity-counter">
+        <button class="arrow-size arrow-left" mat-icon-button (click)="changeProsperity(-1)">
+          <mat-icon>remove</mat-icon>
+        </button>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="7" rowspan="1">
+      <div class="tile-center prosperity-counter">
+        <button *ngFor="let item of prosperityCounter; let i = index; let last = last"
+                mat-mini-fab disableRipple="true" color="primary" disabled
+                class="donation-counter"
+                [ngClass]="prosperityCounterClasses(i, item, last)">
+          <mat-icon *ngIf="last">plus_one</mat-icon>
+        </button>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" [rowspan]="nextProsperityCounter.length > 0 ? 2 : 1">
+      <div *ngIf="prosperityLevel < 9" class="tile-center prosperity-counter">
+        <button class="arrow-size arrow-right" mat-icon-button (click)="changeProsperity(1)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="nextProsperityCounter.length > 0" colspan="7" rowspan="1">
+      <div class="tile-center prosperity-counter">
+        <button *ngFor="let item of nextProsperityCounter; let i = index; let last = last"
+                mat-mini-fab disableRipple="true" color="primary" disabled
+                class="donation-counter counter-inactive counter-sm">
+          <mat-icon *ngIf="last">plus_one</mat-icon>
+        </button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
+<mat-card class="top-margin">
+  <mat-grid-list cols="9" rowHeight="54px">
+    <mat-grid-tile colspan="5" rowspan="1">
+      <div class="tile-center card-header">
+        <mat-card-header>
+          <mat-card-title>Great Oak Donations</mat-card-title>
+        </mat-card-header>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1">
+      <div class="tile-center">
+        <button mat-fab disableRipple="true" color="primary" class="rep-size">
+          {{service.game.donations}}
+        </button>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1">
+      <div *ngIf="service.game.donations < 1000" class="tile-center prosperity-counter">
+        <button class="arrow-size arrow-right" mat-icon-button (click)="donateToGreatOak(10)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="1" rowHeight="20px">
+    <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="9" [rowHeight]="nextDonationsCounter.length > 0 ? '34px' : '68px'">
+    <mat-grid-tile colspan="1" [rowspan]="nextDonationsCounter.length > 0 ? 2 : 1"></mat-grid-tile>
+    <mat-grid-tile colspan="7" rowspan="1">
+      <div class="tile-center prosperity-counter">
+        <button *ngFor="let item of donationsCounter; let i = index; let last = last"
+                mat-mini-fab disableRipple="true" color="primary" disabled
+                class="donation-counter"
+                [ngClass]="donationsCounterClasses(i, item, last)">
+          <mat-icon *ngIf="last">plus_one</mat-icon>
+        </button>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" [rowspan]="nextDonationsCounter.length > 0 ? 2 : 1"></mat-grid-tile>
+    <mat-grid-tile *ngIf="nextDonationsCounter.length > 0" colspan="7" rowspan="1">
+      <div class="tile-center prosperity-counter">
+        <button *ngFor="let item of nextDonationsCounter; let i = index; let last = last"
+                mat-mini-fab disableRipple="true" color="primary" disabled
+                class="donation-counter counter-inactive counter-sm">
+          <mat-icon *ngIf="last">plus_one</mat-icon>
+        </button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
+<mat-card class="top-margin">
+  <mat-grid-list cols="9" rowHeight="54px">
+    <mat-grid-tile colspan="3" rowspan="1">
+      <div class="tile-center card-header">
+        <mat-card-header>
+          <mat-card-title>Reputation</mat-card-title>
+        </mat-card-header>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1">
+      <div *ngIf="this.service.game['reputation'] > -20" class="tile-center">
+        <button class="arrow-size rep-left" mat-icon-button (click)="changeReputation(-1)">
+          <mat-icon>remove</mat-icon>
+        </button>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1">
+      <div class="tile-center">
+        <button mat-fab disableRipple="true" color="accent" class="accent-light rep-size">
+          {{service.game.reputation}}
+        </button>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1">
+      <div *ngIf="this.service.game['reputation'] < 20" class="tile-center">
+        <button class="arrow-size rep-right" mat-icon-button (click)="changeReputation(1)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="1" rowHeight="10px"></mat-grid-list>
+  <mat-grid-list cols="3" rowHeight="54px">
+    <mat-grid-tile colspan="1" rowspan="1">
+      <div class="tile-center card-header">
+        <mat-card-header>
+          <mat-card-title>Shop Modifier</mat-card-title>
+        </mat-card-header>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1">
+      <div class="tile-center">
+        <button mat-fab disableRipple="true" color="primary" class="rep-size modifier">
+          {{shopModifier}}
+        </button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>

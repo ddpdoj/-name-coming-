@@ -1,8 +1,9 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 
 import { CoreService } from '../core/services/core.service';
+import { NavLink, NAV_LINKS } from '../core/models/nav-link.model';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +12,7 @@ import { CoreService } from '../core/services/core.service';
 })
 export class HomeComponent {
 
-  // @HostBinding('class.accent-light') accentClass = true;
-
-  public tiles = [
-    { id: 'party', icon: 'party', link: '/party' },
-    { id: 'achievements', icon: 'achievement', link: '/achievements' },
-    { id: 'scenarios', icon: 'map', link: '/global' },
-    { id: 'calculator', icon: 'calculator', link: '/calculators' },
-    { id: 'monsters', icon: 'monster', link: null },
-    { id: 'los-ai', icon: 'los-ai', link: null }
-  ];
+  public tiles: NavLink[] = NAV_LINKS;
 
   constructor(
     private iconRegistry: MatIconRegistry,

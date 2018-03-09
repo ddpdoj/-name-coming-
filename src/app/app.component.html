@@ -5,15 +5,15 @@
   <mat-sidenav-content>
     <app-header [isHome]="isHome"></app-header>
     <nav *ngIf="navLinks.length > 0" mat-tab-nav-bar color="primary">
-      <a *ngFor="let link of navLinks"
+      <a *ngFor="let item of navLinks"
          mat-tab-link
          routerLinkActive #rla="routerLinkActive"
-         [routerLink]="link.path"
+         [routerLink]="item.path"
          [active]="rla.isActive">
-        <span>{{link.title}}</span>
+        <span>{{item.name}}</span>
       </a>
     </nav>
-    <div class="accent-light">
+    <div class="accent-light body-content" [class.no-tabs]="navLinks.length === 0">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

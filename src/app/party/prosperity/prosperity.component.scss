@@ -1,0 +1,183 @@
+@import '../../../assets/crimson-brown.scss';
+
+:host {
+  padding: 10px;
+  display: block;
+  height: calc(100vh - 137px);
+
+  & mat-card {
+    padding: 10px 16px;
+
+    &.top-margin {
+      margin-top: 10px;
+    }
+    &:first-of-type {
+      height: calc(26.251637961vh);
+    }
+    &:nth-of-type(2) {
+      height: calc(22.497609463vh);
+    }
+    &:last-of-type {
+      height: calc(18.587163111vh);
+    }
+  }
+}
+
+mat-grid-list {
+  width: 100%;
+
+  &.bottom-margin {
+    margin-bottom: 10px;
+  }
+  & mat-icon.rep-modifier {
+    color: mat-color($warn, lighter);
+    transform: scaleX(1.5);
+    font-size: 36px;
+    position: relative;
+    top: 4px;
+    left: -9px;
+  }
+  & mat-grid-tile {
+    & .tile-center {
+      width: 100%;
+      height: 54px;
+      text-align: center;
+      position: relative;
+      top: 6px;
+
+      &.card-header {
+        height: 12px;
+        top: 4px;
+      }
+      &.prosperity-counter {
+        height: 36px;
+
+        &:first-of-type {
+          margin-bottom: 6px;
+        }
+        & .donation-counter {
+          width: 24px;
+          height: 24px;
+          margin-left: 1px;
+
+          &:disabled {
+            background-color: mat-color($primary);
+          }
+          &.counter-inactive {
+            background-color: mat-color($accent, lighter, 0.2);
+            color: mat-color($warn, lighter);
+          }
+          &.last-counter:not(.counter-inactive) {
+            background-color: mat-color($primary, darker);
+            color: white;
+          }
+          & mat-icon {
+            height: 22px;
+            font-size: 22px;
+            position: relative;
+            right: 2px;
+          }
+          &.counter-md {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+
+            & mat-icon {
+              height: 20px;
+              font-size: 20px;
+              bottom: 3px;
+            }
+          }
+          &.counter-sm {
+            width: 16px;
+            height: 18px;
+            margin-top: 4px;
+
+            & mat-icon {
+              height: 18px;
+              font-size: 18px;
+              bottom: 5px;
+              right: 3px;
+            }
+          }
+        }
+      }
+      & .rep-size {
+        width: 42px;
+        height: 40px;
+        font-size: 28px;
+        background-color: mat-color($warn, lighter, 0.2);
+        color: rgba(0, 0, 0, 0.87);
+
+        &.modifier {
+          background-color: mat-color($warn, lighter);
+          color: white;
+        }
+      }
+      & .arrow-size {
+        width: 40px;
+        height: 40px;
+        position: relative;
+
+        &.rep-left {
+          left: 2px;
+        }
+        &.rep-right {
+          left: -6px;
+        }
+        &.arrow-left {
+          left:4px;
+          top: -5px;
+        }
+        &.arrow-right {
+          left: -6px;
+          top: -5px;
+        }
+        & mat-icon {
+          width: 100%;
+          height: 100%;
+          font-size: 40px;
+          line-height: 40px;
+          color: mat-color($warn, lighter)
+        }
+      }
+      & .donation-counter {
+        width: 24px;
+        height: 24px;
+
+        &:disabled {
+          background-color: mat-color($warn, lighter, 0.2);
+          color: mat-color($primary, lighter);
+        }
+        & .mat-button-wrapper {
+          padding: 0 auto;
+        }
+        & mat-icon {
+          width: 20px;
+          height: 20px;
+          font-size: 20px;
+          line-height: 10px;
+        }
+      }
+      & mat-chip.items {
+        background-color: mat-color($warn, lighter);
+        color: white;
+      }
+    }
+    &.rep-range {
+      background: white;
+
+      &.positive {
+        background: white;
+      }
+      &.negative {
+        background: white;
+      }
+    }
+  }
+  & mat-chip-list  mat-chip {
+    position: relative;
+    top: 6px;
+    margin: 0 auto;
+  }
+}

@@ -70,15 +70,45 @@ $accent-brown: (
     A700: white,
   )
 );
+$warn-bluegrey: (
+  50: #62727b,
+  100: #37474f,
+  200: #102027,
+  300: #7faedd,
+  400: #7faedd,
+  500: #7faedd,
+  600: #7faedd,
+  700: #7faedd,
+  800: #7faedd,
+  900: #7faedd,
+  A100: #7faedd,
+  A200: #7faedd,
+  A400: #7faedd,
+  A700: #7faedd,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://www.google.com/design/spec/style/color.html
 $primary: mat-palette($primary-red, 100, 50, 200);
 $accent: mat-palette($accent-brown, 100, 50, 200);
-
-// The warn palette is optional (defaults to red).
-$warn: mat-palette($mat-light-blue);
+$warn: mat-palette($warn-bluegrey, 100, 50, 200);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $theme: mat-light-theme($primary, $accent, $warn);

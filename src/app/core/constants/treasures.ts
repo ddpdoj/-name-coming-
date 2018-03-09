@@ -79,7 +79,9 @@ export const TREASURES = [
   { title: 'A Mysterious Diagram (please see Kickstarter Scenario Book to view)' },
 ];
 
-export const DONATION_MILESTONES = [10, 15, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 100];
+export const DONATION_MILESTONES = [0, 100, 150, 200, 250, 300, 350, 400, 500, 600, 700, 800, 900, 1000];
+
+export const PROSPERITY_MILESTONES = [0, 4, 9, 15, 22, 30, 39, 50, 64];
 
 export const SCENARIO_TREAURES = [
   [],

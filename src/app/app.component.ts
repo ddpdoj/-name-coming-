@@ -6,7 +6,7 @@ import { MatTabNav, MatTabLink } from '@angular/material/tabs';
 import { MatCard } from '@angular/material/card';
 
 import { CoreService } from './core/services/core.service';
-import { TAB_LINKS, TabLink } from './core/constants/tab-links';
+import { TAB_LINKS, NavLink } from './core/models/nav-link.model';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ export class AppComponent {
   @ViewChild(MatSidenav) sideNavInstance: MatSidenav;
 
   public path = '';
-  public navLinks: TabLink[] = [];
+  public navLinks: NavLink[] = [];
   public isHome = false;
   public showModal = false;
   public modalData = {};
@@ -43,7 +43,7 @@ export class AppComponent {
         else if (this.path.includes('map-calculators'))
           this.navLinks = TAB_LINKS.MAP_CALCULATORS;
         else
-          this.navLinks = new Array<TabLink>();
+          this.navLinks = new Array<NavLink>();
       }
     });
 

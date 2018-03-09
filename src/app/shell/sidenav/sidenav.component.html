@@ -1,22 +1,18 @@
-<mat-toolbar>
-  <mat-toolbar-row routerLink="/home">
-    <mat-icon class="example-icon">home</mat-icon>
-    <span class="app-sidenav-filler"></span>
-    <span>Home</span>
-  </mat-toolbar-row>
-  <mat-toolbar-row routerLink="/party">
-    <mat-icon>people</mat-icon>
-    <span class="app-sidenav-filler"></span>
-    <span class="lg-font">Party</span>
-  </mat-toolbar-row>
-  <mat-toolbar-row routerLink="/global">
-    <mat-icon class="example-icon">public</mat-icon>
-    <span class="app-sidenav-filler"></span>
-    <span>Global</span>
-  </mat-toolbar-row>
-  <mat-toolbar-row routerLink="/utilities">
-    <mat-icon class="example-icon">build</mat-icon>
-    <span class="app-sidenav-filler"></span>
-    <span>Utilities</span>
-  </mat-toolbar-row>
-</mat-toolbar>
+<mat-list>
+  <div>
+    <mat-list-item routerLink="/home" routerLinkActive="active-link" (click)="service.toggleSidenav()">
+      <mat-icon matListIcon>home</mat-icon>
+      <span class="app-sidenav-filler"></span>
+      <span>Home</span>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </div>
+  <div *ngFor="let item of navLinks; let last = last">
+    <mat-list-item [routerLink]="item.path" routerLinkActive="active-link" (click)="service.toggleSidenav()">
+      <mat-icon matListIcon class="absolute-position" [svgIcon]="item.icon"></mat-icon>
+      <span class="app-sidenav-filler"></span>
+      <span>{{item.name}}</span>
+    </mat-list-item>
+    <mat-divider *ngIf="!last"></mat-divider>
+  </div>
+</mat-list>

@@ -73,3 +73,34 @@ export const POSSIBLE_ACHIEVEMENTS = [
     GLOBAL_ACHIEVEMENTS.WATER_BREATHING,
   ],
 ];
+
+export const PARTY_ACHIEVEMENTS = {
+  A_DEMONS_ERRAND: 'A Demon\'s Errand',
+  A_MAP_TO_TREASURE: 'A Map to Treasure',
+  ACROSS_THE_DIVIDE: 'Across the Divide',
+  AN_INVITATION: 'An Invitation',
+  BAD_BUSINESS: 'Bad Business',
+  DARK_BOUNTY: 'Dark Bounty',
+  DEBT_COLLECTION: 'Debt Collection',
+  FIRST_STEPS: 'First Steps',
+  FISHS_AID: 'Fish\'s Aid',
+  FOLLOWING_CLUES: 'Following Clues',
+  GRAVE_JOB: 'Grave Job',
+  HIGH_SEA_ESCORT: 'High Sea Escort',
+  JEKSERAHS_PLANS: 'Jekserah\'s Plans',
+  REDTHORNS_AID: 'Redthorn\'s Aid',
+  SIN_RA: 'Sin-Ra',
+  STONEBREAKERS_CENSER: 'Stonebreaker\'s Censer',
+  THE_DRAKES_COMMAND: 'The Drake\'s Command',
+  THE_DRAKES_TREASURE: 'The Drake\'s Treasure',
+  THE_POISONS_SOURCE: 'The Poison\'s Source',
+  THE_SCEPTER_AND_THE_VOICE: 'The Scepter and the Voice',
+  THE_VOICES_COMMAND: 'The Voice\'s Command',
+  THE_VOICES_TREASURE: 'The Voice\'s Treasure',
+  THROUGH_THE_NEST: 'Through the Nest',
+  THROUGH_THE_RUINS: 'Through the Ruins',
+  THROUGH_THE_TRENCH: 'Through the Trench',
+  TREMORS: 'Tremors',
+  WATER_STAFF: 'Water Staff'
+};
+

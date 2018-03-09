@@ -1,41 +1,58 @@
+@import '../../../assets/crimson-brown.scss';
+
 :host {
   padding: 10px;
-  display: block
+  display: block;
+  height: calc(100vh - 137px);
 }
 
-mat-card.top-margin {
-  margin-top: 10px;
+mat-card {
+  padding: 10px 16px;
+
+  &.top-margin {
+    margin-top: 10px;
+  }
+  &:first-of-type {
+    height: calc(25.907523375vh);
+  }
+  &:last-of-type {
+    height: calc(45.654111314vh);
+  }
+  & mat-card-header mat-card-title {
+    color: mat-color($primary, darker);
+  }
+  & mat-card-content {
+    position: relative;
+    top: -10px;
+  }
 }
+mat-form-field {
+  width: 100%;
+}
+mat-table {
+  position: relative;
+  top: -10px;
 
-mat-grid-tile {
-  & .tile-left, & .tile-right, & .tile-center {
-    width: 100%;
-  }
-  & .tile-left .arrow-size {
-    position: relative;
+  & mat-row {
+    max-height: 49px;
 
-    & mat-icon {
-      position: absolute;
-      left: 20%;
-      font-size: 80px;
+    img {
+      width: 42px;
+      height: 42px;
+      position: relative;
+      top: 3px;
     }
   }
-  & .tile-right .arrow-size {
-    position: relative;
-
-    & mat-icon {
-      position: absolute;
-      right: 20%;
-      font-size: 80px;
-    }
+  & mat-header-cell:first-of-type(2),
+  & mat-cell:first-of-type(2) {
+    flex: 2;
   }
-  & .tile-center {
-    text-align: center;
-
-    & .rep-size {
-      width: 72px;
-      height: 72px;
-      font-size: 48px;
-    }
+  & mat-header-cell:nth-of-type(2),
+  & mat-cell:nth-of-type(2) {
+    flex: 2;
+  }
+  & mat-header-cell:last-of-type(2),
+  & mat-cell:last-of-type(2) {
+    flex: 1;
   }
 }

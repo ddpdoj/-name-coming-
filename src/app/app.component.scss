@@ -2,4 +2,14 @@
   max-height: 100vh;
   overflow: hidden;
   display: block;
+  overflow-y: hidden;
+}
+
+.body-content {
+  max-height: calc(100vh - 117px);
+  height: 100%;
+
+  &.no-tabs {
+    max-height: calc(100vh - 68px);
+  }
 }

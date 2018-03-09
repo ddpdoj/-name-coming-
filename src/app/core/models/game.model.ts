@@ -1,4 +1,5 @@
 import { MonsterHealth } from './monster-health.model';
+import { Character } from './character.model';
 
 export class Game {
   public name = '';
@@ -13,4 +14,5 @@ export class Game {
   public scenariosComplete: any[] = [];
   public treasuresUnlocked: any[] = [];
   public monsterHealth: MonsterHealth;
+  public characters: Character[];
 }

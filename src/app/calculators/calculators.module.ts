@@ -1,34 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { EnhancementsModule } from './enhancements/enhancements.module';
-import { ScenarioLevelModule } from './scenario-level/scenario-level.module';
-import { EnhancementsComponent } from './enhancements/enhancements.component';
-import { ScenarioLevelComponent } from './scenario-level/scenario-level.component';
-
 const routes: Routes = [
   {
     path: 'enhancements',
-    component: EnhancementsComponent
+    loadChildren: './enhancements/enhancements.module#EnhancementsModule'
   },
   {
     path: 'scenario-level',
-    component: ScenarioLevelComponent
+    loadChildren: './scenario-level/scenario-level.module#ScenarioLevelModule'
   },
   {
     path: '',
-    redirectTo: '/calculators/enhancement',
-    pathMatch: 'full'
+    redirectTo: 'enhancements'
   }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forChild(routes)
-  ],
-  exports: [
-    EnhancementsModule,
-    ScenarioLevelModule
   ]
 })
 export class CalculatorsModule { }

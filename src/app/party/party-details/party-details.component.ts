@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 
 import { CoreService } from '../../core/services/core.service';
+import { Character } from '../../core/models/character.model';
+import { IMAGES } from '../../core/constants/images';
 
 @Component({
   selector: 'app-party-details',
@@ -10,30 +11,18 @@ import { CoreService } from '../../core/services/core.service';
 })
 export class PartyDetailsComponent implements OnInit {
 
-  public partyForm: FormGroup;
-  public name: FormControl =  new FormControl();
-  public location: FormControl = new FormControl();
-  public notes: FormControl = new FormControl();
+  public displayedColumns = ['class', 'name', 'level'];
+  public rows: Character[] = [
+    { name: 'Guy', class: 'Brute', classImg: IMAGES['Brute'], level: 2 },
+    { name: 'Buddy', class: 'Spellweaver', classImg: IMAGES['Spellweaver'], level: 4 },
+    { name: 'Friend', class: 'Mindthief', classImg: IMAGES['Mindthief'], level: 5 },
+    { name: 'Chap', class: 'Cragheart', classImg: IMAGES['Cragheart'], level: 3 }
+  ];
 
   constructor(public service: CoreService) { }
 
   ngOnInit() {
-    // this.createFormControls();
-    // this.createForm();
-  }
 
-  private createFormControls(): void {
-    this.name = new FormControl('', []);
-    this.location = new FormControl('', []);
-    this.notes = new FormControl('', []);
-  }
-
-  private createForm(): void {
-      this.partyForm = new FormGroup({
-          name: this.name,
-          location: this.location,
-          notes: this.notes
-      });
   }
 
 }

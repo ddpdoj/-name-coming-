@@ -1,5 +1,4 @@
-import { PARTY_ACHIEVEMENTS } from '../constants/party-achievements';
-import { GLOBAL_ACHIEVEMENTS } from '../constants/global-achievements';
+import { PARTY_ACHIEVEMENTS, GLOBAL_ACHIEVEMENTS } from '../constants/achievements';
 
 export class Scenerio {
   public title: string;

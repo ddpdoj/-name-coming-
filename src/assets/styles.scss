@@ -1,5 +1,31 @@
 @import 'crimson-brown.scss';
 
+body {
+  margin: 0;
+}
+
+app-prosperity .mat-card-title {
+  margin: 0;
+  color: mat-color($primary, darker);
+}
+mat-grid-tile .tile-center .rep-size .mat-button-wrapper {
+  position: relative;
+  bottom: 8px;
+}
+mat-card svg {
+  width: calc(11vw + 11vh);
+  height: calc(11vw + 11vh);;
+  font-size: inherit;
+}
+mat-chip-list .mat-chip-list-wrapper {
+  height: 100%;
+}
+mat-list mat-icon svg {
+  top: 0;
+  width: 24px;
+  height: 24px;
+}
+
 .primary-light {
   background-color: mat-color($primary, lighter, 0.2);
 }
@@ -8,33 +34,31 @@
 }
 .accent-light {
   background-color: mat-color($accent, lighter, 0.2);
-
-  &.reputation-value {
-    color: mat-color($primary);
-    font-size: 48px;
-  }
 }
 .accent-dark {
   background-color: mat-color($accent, darker);
 }
-
+.warn-light {
+  background-color: mat-color($warn, lighter, 0.2);
+}
+.warn-dark {
+  background-color: mat-color($warn, darker);
+}
 .app-sidenav {
   min-width: 240px;
 }
 .app-toolbar-filler {
   flex: 1 1 auto;
 }
-.app-menu-button {
+.prosperity-counter .donation-counter .mat-button-wrapper {
   padding: 0;
-  min-width: 50px;
 }
-
-mat-card svg {
-  width: calc(11vw + 11vh);
-  height: calc(11vw + 11vh);;
-  font-size: inherit;
+.centered-card-header .mat-card-header-text {
+  margin: 0 auto;
 }
-
+.mat-mini-fab.prosperity-sm .mat-button-wrapper {
+  padding: 0;
+}
 .mat-tab-nav-bar .mat-tab-links {
   display: flex;
 

@@ -3,7 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { MatSidenav } from '@angular/material/sidenav';
 
 import { Game } from '../models/game.model';
-import { GLOBAL_ACHIEVEMENTS } from '../constants/global-achievements';
+import { GLOBAL_ACHIEVEMENTS } from '../constants/achievements';
 import { DONATION_MILESTONES } from '../constants/treasures';
 
 @Injectable()
@@ -112,44 +112,39 @@ export class CoreService {
     this._game.reputation = newRep;
   }
 
-  public changeProsperity(amount: number): void {
-    let newProsperity = this._game.prosperity + amount;
+  // public changeProsperity(amount: number): void {
+  //   let newProsperity = this._game.prosperity + amount;
 
-    if (newProsperity > this.MAX_PROSPERITY) {
-      newProsperity = this.MAX_PROSPERITY;
-    }
-    else if (newProsperity < 0) {
-      newProsperity = 0;
-    }
+  //   if (newProsperity > this.MAX_PROSPERITY) {
+  //     newProsperity = this.MAX_PROSPERITY;
+  //   }
+  //   else if (newProsperity < 0) {
+  //     newProsperity = 0;
+  //   }
 
-    this._game.prosperity = newProsperity;
-  }
+  //   this._game.prosperity = newProsperity;
+  // }
 
-  public donateToGreatOak(amount: number): void {
-    let newDonations = this._game.donations + amount;
-    let prosperityChange = 0;
+  // public donateToGreatOak(amount: number): void {
+  //   const newDonations = this._game.donations + amount;
+  //   let prosperityChange = 0;
 
-    if (newDonations > 100)
-      newDonations = 100;
-    else if (newDonations < 0)
-      newDonations = 0;
+  //   if (newDonations !== this._game.donations) {
+  //     if (DONATION_MILESTONES.indexOf(newDonations) > -1 && amount > 0)
+  //       prosperityChange = 1;
+  //     else if (DONATION_MILESTONES.indexOf(this._game.donations) > -1 && amount < 0)
+  //       prosperityChange = -1;
+  //   }
 
-    if (newDonations !== this._game.donations) {
-      if (DONATION_MILESTONES.indexOf(newDonations) > -1 && amount > 0)
-        prosperityChange = 1;
-      else if (DONATION_MILESTONES.indexOf(this._game.donations) > -1 && amount < 0)
-        prosperityChange = -1;
-    }
+  //   let newProsperity = this._game.prosperity + prosperityChange;
 
-    let newProsperity = this._game.prosperity + prosperityChange;
+  //   if (newProsperity > 64)
+  //     newProsperity = 64;
+  //   else if (newProsperity < 0)
+  //     newProsperity = 0;
 
-    if (newProsperity > 64)
-      newProsperity = 64;
-    else if (newProsperity < 0)
-      newProsperity = 0;
-
-    this._game.donations = newDonations;
-    this._game.prosperity = newProsperity;
-  }
+  //   this._game.donations = newDonations;
+  //   this._game.prosperity = newProsperity;
+  // }
 
 }

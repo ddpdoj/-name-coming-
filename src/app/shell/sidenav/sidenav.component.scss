@@ -1,7 +1,12 @@
+@import '../../../assets/crimson-brown.scss';
+
 .lg-font {
   font-size: 20px;
 }
-
 .app-sidenav-filler {
   margin-left: 20px;
+}
+.active-link {
+  background-color: mat-color($primary);
+  color: white;
 }

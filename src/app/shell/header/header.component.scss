@@ -5,15 +5,18 @@
 .title {
   position: relative;
   left: 50%;
-  top: -4px;
+  top: -2px;
   transform: translateX(-50%);
   font-family: 'Overlock SC', cursive;
   font-size: 26px;
 }
 
-/deep/ svg {
+.header-menu {
   position: relative;
-  width: 28px;
-  height: 28px;
-  top: 5px;
+  top: -4px;
+  right: -2.5%;
+
+  & mat-icon {
+    font-size: 30px;
+  }
 }

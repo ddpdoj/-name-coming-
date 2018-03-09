@@ -1,43 +1,47 @@
+<div>
 <mat-card>
+  <mat-card-header>
+    <mat-card-title>Party Info</mat-card-title>
+  </mat-card-header>
   <mat-card-content>
-    <form>
-      <mat-form-field>
-        <input matInput placeholder="Party Name" [value]="service.game.name">
-      </mat-form-field>
-      <mat-form-field>
-        <textarea matInput placeholder="Notes" [value]="service.game.partyNotes"></textarea>
-      </mat-form-field>
-    </form>
+    <mat-form-field>
+      <input matInput
+              placeholder="Party Name"
+              [(ngModel)]="service.game.name">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput
+                placeholder="Notes"
+                matAutosizeMinRows="2"
+                matAutosizeMaxRows="2"
+                [(ngModel)]="service.game.partyNotes"></textarea>
+    </mat-form-field>
   </mat-card-content>
 </mat-card>
 <mat-card class="top-margin">
   <mat-card-header>
-    <mat-card-title>Reputation</mat-card-title>
+    <mat-card-title>Characters</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <mat-grid-list cols="3" rowHeight="1:3">
-      <mat-grid-tile colspan="1" rowspan="1">
-        <div class="tile-left">
-          <button class="arrow-size" mat-icon-button>
-            <mat-icon color="primary">keyboard_arrow_left</mat-icon>
-          </button>
-        </div>
-      </mat-grid-tile>
-      <mat-grid-tile colspan="1" rowspan="1">
-        <div class="tile-center">
-          <button mat-fab class="primary-light rep-size">
-            {{service.game.reputation}}
-          </button>
-        </div>
-      </mat-grid-tile>
-      <mat-grid-tile colspan="1" rowspan="1">
-        <div class="tile-right">
-          <button class="arrow-size" mat-icon-button>
-            <mat-icon color="primary">keyboard_arrow_right</mat-icon>
-          </button>
-        </div>
-      </mat-grid-tile>
-    </mat-grid-list>
+    <mat-table #table [dataSource]="rows">
+      <ng-container matColumnDef="class">
+        <mat-header-cell *matHeaderCellDef>Class</mat-header-cell>
+        <mat-cell *matCellDef="let character">
+          <img [src]="character.classImg" />
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let character">{{character.name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="level">
+        <mat-header-cell *matHeaderCellDef>Level</mat-header-cell>
+        <mat-cell *matCellDef="let character">{{character.level}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
   </mat-card-content>
 </mat-card>
-
+</div>

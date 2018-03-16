@@ -1,15 +1,15 @@
 <div>
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Party Info</mat-card-title>
+    <mat-card-title class="details-title">Party Info</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <mat-form-field>
+    <mat-form-field color="warn">
       <input matInput
-              placeholder="Party Name"
-              [(ngModel)]="service.game.name">
+             placeholder="Party Name"
+             [(ngModel)]="service.game.name">
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field color="warn">
       <textarea matInput
                 placeholder="Notes"
                 matAutosizeMinRows="2"
@@ -20,14 +20,16 @@
 </mat-card>
 <mat-card class="top-margin">
   <mat-card-header>
-    <mat-card-title>Characters</mat-card-title>
+    <mat-card-title class="details-title">Characters</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <mat-table #table [dataSource]="rows">
       <ng-container matColumnDef="class">
         <mat-header-cell *matHeaderCellDef>Class</mat-header-cell>
         <mat-cell *matCellDef="let character">
-          <img [src]="character.classImg" />
+            <mat-icon [class]="'class-icon ' + character.icon"
+                      [svgIcon]="character.icon">
+            </mat-icon>
         </mat-cell>
       </ng-container>
       <ng-container matColumnDef="name">
@@ -40,7 +42,7 @@
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked(row)"></mat-row>
     </mat-table>
   </mat-card-content>
 </mat-card>

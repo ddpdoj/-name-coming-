@@ -7,6 +7,6 @@
   margin-left: 20px;
 }
 .active-link {
-  background-color: mat-color($primary);
-  color: white;
+  background-color: mat-color($warn);
+  color: white !important;
 }

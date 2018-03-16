@@ -77,7 +77,7 @@ export class ScenariosComponent {
         for (let i = 0; i < scenario.globalAchievementsRequired.length; i++) {
           const requiredGlobalAchievement = scenario.globalAchievementsRequired[i];
 
-          if (this.game.globalAchievements[requiredGlobalAchievement] === 'true')
+          if (this.game.acquiredGlobalAchievements[requiredGlobalAchievement] === 'true')
             return true;
         }
       }
@@ -86,7 +86,7 @@ export class ScenariosComponent {
         for (let i = 0; i < scenario.partyAchievementsRequired.length; i++) {
           const requiredPartyAchievement = scenario.partyAchievementsRequired[i];
 
-          if (this.game.partyAchievements[requiredPartyAchievement] === 'true')
+          if (this.game.acquiredPartyAchievements[requiredPartyAchievement] === 'true')
             return true;
         }
       }
@@ -98,7 +98,7 @@ export class ScenariosComponent {
         for (let i = 0; i < scenario.globalAchievementsRequired.length; i++) {
           const requiredGlobalAchievement = scenario.globalAchievementsRequired[i];
 
-          if (this.game.globalAchievements[requiredGlobalAchievement] !== 'true')
+          if (this.game.acquiredGlobalAchievements[requiredGlobalAchievement] !== 'true')
             return false;
         }
       }
@@ -107,7 +107,7 @@ export class ScenariosComponent {
         for (let i = 0; i < scenario.globalAchievementsRequiredIncomplete.length; i++) {
           const requiredGlobalAchievementIncomplete = scenario.globalAchievementsRequiredIncomplete[i];
 
-          if (this.game.globalAchievements[requiredGlobalAchievementIncomplete])
+          if (this.game.acquiredGlobalAchievements[requiredGlobalAchievementIncomplete])
             return false;
         }
       }
@@ -116,7 +116,7 @@ export class ScenariosComponent {
         for (let i = 0; i < scenario.partyAchievementsRequired.length; i++) {
           const requiredPartyAchievement = scenario.partyAchievementsRequired[i];
 
-          if (this.game.partyAchievements[requiredPartyAchievement] !== 'true')
+          if (this.game.acquiredPartyAchievements[requiredPartyAchievement] !== 'true')
             return false;
         }
       }

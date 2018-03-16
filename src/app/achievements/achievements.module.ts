@@ -4,11 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'party',
-    loadChildren: './global-achievements/global-achievements.module#GlobalAchievementsModule'
+    loadChildren: './party-achievements/party-achievements.module#PartyAchievementsModule'
   },
   {
     path: 'global',
-    loadChildren: './party-achievements/party-achievements.module#PartyAchievementsModule'
+    loadChildren: './global-achievements/global-achievements.module#GlobalAchievementsModule'
   },
   {
     path: '',

@@ -1,5 +1,7 @@
 import { MonsterHealth } from './monster-health.model';
 import { Character } from './character.model';
+import { PARTY_ACHIEVEMENTS } from '../constants/party-achievements';
+import { GLOBAL_ACHIEVEMENTS } from '../constants/global-achievements';
 
 export class Game {
   public name = '';
@@ -7,9 +9,11 @@ export class Game {
   public donations = 0;
   public partyLocation = '';
   public partyNotes = '';
-  public partyAchievements = {};
   public reputation = 0;
-  public globalAchievements = {};
+  public acquiredPartyAchievements = {};
+  public availablePartyAchievements = PARTY_ACHIEVEMENTS;
+  public acquiredGlobalAchievements = {};
+  public availableGlobalAchievements = GLOBAL_ACHIEVEMENTS;
   public scenariosUnlocked: any[] = [];
   public scenariosComplete: any[] = [];
   public treasuresUnlocked: any[] = [];

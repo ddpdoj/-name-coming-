@@ -3,17 +3,19 @@ import { Subject } from 'rxjs/Subject';
 import { MatSidenav } from '@angular/material/sidenav';
 
 import { Game } from '../models/game.model';
-import { GLOBAL_ACHIEVEMENTS } from '../constants/achievements';
+import { GLOBAL_ACHIEVEMENTS } from '../constants/global-achievements';
 import { DONATION_MILESTONES } from '../constants/treasures';
 
 @Injectable()
 export class CoreService {
 
-  public subject = new Subject();
+  public toggleSidenavState = new Subject();
+  public undoLastChange = new Subject();
   public CHANGE_GAME_EVENT = 'changeGame';
   public MAX_PROSPERITY = 64;
   private dropboxUri = '';
   private _game: Game;
+  private _previousState: Game;
 
   public set game(value: Game) {
     this._game = value;
@@ -21,6 +23,14 @@ export class CoreService {
   public get game(): Game {
     return this._game;
   }
+
+  public set previousState(value: Game) {
+    this._previousState = value;
+  }
+  public get previousState(): Game {
+    return this._previousState;
+  }
+
   public get shopPriceModifier(): number {
     if (this._game.reputation >= 19) return -5;
     else if (this._game.reputation >= 15) return -4;
@@ -41,7 +51,11 @@ export class CoreService {
   }
 
   public toggleSidenav(): void {
-    this.subject.next();
+    this.toggleSidenavState.next();
+  }
+
+  public undoLast(): void {
+    this.undoLastChange.next();
   }
 
   public getLastSavedGame(): Game {
@@ -49,54 +63,53 @@ export class CoreService {
   }
 
   public togglePartyAchievement(achievement: string): void {
-    const partyAchievementsCopy = this._game.partyAchievements;
+    const acquiredPartyAchievementsCopy = this._game.acquiredPartyAchievements;
+    const availablePartyAchievementsCopy = this._game.availablePartyAchievements;
 
-    if (this._game.partyAchievements[achievement] === 'true')
-      partyAchievementsCopy[achievement] = 'lost';
-    else if (partyAchievementsCopy[achievement] === 'lost')
-      partyAchievementsCopy[achievement] = null;
-    else
-      partyAchievementsCopy[achievement] = 'true';
+    if (this._game.acquiredPartyAchievements[achievement] === 'true')
+      acquiredPartyAchievementsCopy[achievement] = 'lost';
+    else {
+      acquiredPartyAchievementsCopy[achievement] = 'true';
+      availablePartyAchievementsCopy[achievement] = null;
+    }
 
-    this._game.partyAchievements = partyAchievementsCopy;
+    this._game.acquiredPartyAchievements = acquiredPartyAchievementsCopy;
+    this._game.availablePartyAchievements = availablePartyAchievementsCopy;
   }
 
   public toggleGlobalAchievement(achievement: string): void {
-    const globalAchievementsCopy = this._game.globalAchievements;
+    const acquiredGlobalAchievementsCopy = this._game.acquiredGlobalAchievements;
+    const availableGlobalAchievementsCopy = this._game.availableGlobalAchievements;
 
-    if (this._game.globalAchievements[achievement]) {
-      globalAchievementsCopy[achievement] = null;
+
+    if (achievement.startsWith('Artifact')) {
+      acquiredGlobalAchievementsCopy[GLOBAL_ACHIEVEMENTS.ARTIFACT_RECOVERED] = null;
+      acquiredGlobalAchievementsCopy[GLOBAL_ACHIEVEMENTS.ARTIFACT_CLEANSED] = null;
+      acquiredGlobalAchievementsCopy[GLOBAL_ACHIEVEMENTS.ARTIFACT_LOST] = null;
     }
-    else {
-      if (achievement.startsWith('Artifact')) {
-        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.ARTIFACT_RECOVERED] = null;
-        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.ARTIFACT_CLEANSED] = null;
-        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.ARTIFACT_LOST] = null;
-      }
-      else if (achievement.startsWith('The Drake')) {
-        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_DRAKE_AIDED] = null;
-        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_DRAKE_SLAIN] = null;
-      }
-      else if (achievement.startsWith('City Rule')) {
-        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.CITY_RULE_DEMONIC] = null;
-        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.CITY_RULE_ECONOMIC] = null;
-        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.CITY_RULE_MILITARISTIC] = null;
-      }
-      else if (achievement.startsWith('The Voice')) {
-        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_VOICE_FREED] = null;
-        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_VOICE_SILENCED] = null;
-      }
-      else if (achievement.startsWith('The Demon Dethroned')) {
-        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_RIFT_CLOSED] = null;
-      }
-      else if (achievement.startsWith('The Rift Closed')) {
-        globalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_DEMON_DETHRONED] = null;
-      }
-
-      globalAchievementsCopy[achievement] = 'true';
+    else if (achievement.startsWith('The Drake')) {
+      acquiredGlobalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_DRAKE_AIDED] = null;
+      acquiredGlobalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_DRAKE_SLAIN] = null;
+    }
+    else if (achievement.startsWith('City Rule')) {
+      acquiredGlobalAchievementsCopy[GLOBAL_ACHIEVEMENTS.CITY_RULE_DEMONIC] = null;
+      acquiredGlobalAchievementsCopy[GLOBAL_ACHIEVEMENTS.CITY_RULE_ECONOMIC] = null;
+      acquiredGlobalAchievementsCopy[GLOBAL_ACHIEVEMENTS.CITY_RULE_MILITARISTIC] = null;
+    }
+    else if (achievement.startsWith('The Voice')) {
+      acquiredGlobalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_VOICE_FREED] = null;
+      acquiredGlobalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_VOICE_SILENCED] = null;
+    }
+    else if (achievement.startsWith('The Demon Dethroned')) {
+      acquiredGlobalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_RIFT_CLOSED] = null;
+    }
+    else if (achievement.startsWith('The Rift Closed')) {
+      acquiredGlobalAchievementsCopy[GLOBAL_ACHIEVEMENTS.THE_DEMON_DETHRONED] = null;
     }
 
-    this._game.globalAchievements = globalAchievementsCopy;
+    acquiredGlobalAchievementsCopy[achievement] = 'true';
+
+    this._game.acquiredGlobalAchievements = acquiredGlobalAchievementsCopy;
   }
 
   public changeReputation(amount: number) {
@@ -111,40 +124,5 @@ export class CoreService {
 
     this._game.reputation = newRep;
   }
-
-  // public changeProsperity(amount: number): void {
-  //   let newProsperity = this._game.prosperity + amount;
-
-  //   if (newProsperity > this.MAX_PROSPERITY) {
-  //     newProsperity = this.MAX_PROSPERITY;
-  //   }
-  //   else if (newProsperity < 0) {
-  //     newProsperity = 0;
-  //   }
-
-  //   this._game.prosperity = newProsperity;
-  // }
-
-  // public donateToGreatOak(amount: number): void {
-  //   const newDonations = this._game.donations + amount;
-  //   let prosperityChange = 0;
-
-  //   if (newDonations !== this._game.donations) {
-  //     if (DONATION_MILESTONES.indexOf(newDonations) > -1 && amount > 0)
-  //       prosperityChange = 1;
-  //     else if (DONATION_MILESTONES.indexOf(this._game.donations) > -1 && amount < 0)
-  //       prosperityChange = -1;
-  //   }
-
-  //   let newProsperity = this._game.prosperity + prosperityChange;
-
-  //   if (newProsperity > 64)
-  //     newProsperity = 64;
-  //   else if (newProsperity < 0)
-  //     newProsperity = 0;
-
-  //   this._game.donations = newDonations;
-  //   this._game.prosperity = newProsperity;
-  // }
 
 }

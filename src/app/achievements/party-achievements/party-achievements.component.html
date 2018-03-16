@@ -1,27 +1,32 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-6 col-md-6">
-      <label class="control-label">Party Achievements</label>
-    </div>
-  </div>
-  <div class="row" style="margin-bottom: 30px;">
-    <div class="col-xs-4 col-md-4 party-achievements-key" style="padding-right: 5px;">
-      <button type="button" class="btn btn-default btn-block" disabled>Locked</button>
-    </div>
-    <div class="col-xs-4 col-md-4 party-achievements-key" style="padding-right: 5px; padding-left: 5px;">
-      <button type="button" class="btn btn-default btn-block btn-scoundrel" disabled>Unlocked</button>
-    </div>
-    <div class="col-xs-4 col-md-4 party-achievements-key" style="padding-left: 5px;">
-      <button type="button" class="btn btn-default btn-block btn-lightning" disabled>Lost</button>
-    </div>
-  </div>
-  <div class="row achievements-container">
-      <div *ngFor="let achievement of achievements" class="col-xs-12 col-md-6 col-lg-4">
-        <button class="btn btn-default btn-block"
-                [ngClass]="{'btn-scoundrel': service.game.partyAchievements[achievement] === 'true', 'btn-lightning': service.game.partyAchievements[achievement] === 'lost'}"
-                (click)="service.togglePartyAchievement(achievement)">
-                {{achievement}}
-        </button>
-      </div>
-  </div>
-</div>
+<mat-accordion id="global-accordion" class="achievements" displayMode="flat">
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>Acquired</mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-grid-list cols="2" rowHeight="36px" [ngStyle]="{'max-height.px': calcGridHeight}">
+      <mat-grid-tile *ngFor="let achievement of acquiredAchievements" colspan="1" rowspan="1" class="chips">
+        <mat-chip-list class="mat-chip-list-stacked">
+          <mat-chip selected="true" [color]="achievement === 'lost' ? 'primary' : 'warn'">
+            {{achievement}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div *ngIf="acquiredAchievements.length === 0" class="center-accordion"><span>None Acquired</span></div>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Available</mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-grid-list cols="2" rowHeight="36px" [ngStyle]="{'max-height.px': calcGridHeight}">
+      <mat-grid-tile *ngFor="let achievement of availableAchievements" colspan="1" rowspan="1" class="chips">
+        <mat-chip-list class="mat-chip-list-stacked">
+          <mat-chip>
+            {{achievement}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div *ngIf="availableAchievements.length === 0" class="center-accordion"><span>None Available</span></div>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,0 +1,17 @@
+:host {
+  padding: 10px;
+  display: block;
+  height: calc(100vh - 137px);
+
+  & mat-accordion {
+    &.achievements {
+      display: block;
+      height: 100%;
+    }
+  }
+  & mat-chip {
+    width: 125px;
+    white-space: nowrap;
+    overflow-x: hidden;
+  }
+}

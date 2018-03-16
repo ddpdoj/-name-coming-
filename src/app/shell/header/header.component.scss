@@ -2,13 +2,17 @@
   height: 12px !important;
 }
 
-.title {
+mat-toolbar {
   position: relative;
-  left: 50%;
-  top: -2px;
-  transform: translateX(-50%);
-  font-family: 'Overlock SC', cursive;
-  font-size: 26px;
+
+  & .title {
+    position: absolute;
+    left: 50%;
+    top: 9px;
+    transform: translateX(-50%);
+    font-family: 'Overlock SC', cursive;
+    font-size: 26px;
+  }
 }
 
 .header-menu {

@@ -1,8 +1,21 @@
+@import '../assets/crimson-brown.scss';
+
 :host {
   max-height: 100vh;
   overflow: hidden;
   display: block;
   overflow-y: hidden;
+
+  & .undo-button {
+    position: absolute;
+    bottom: 4vh;
+    right: 7vw;
+    z-index: 1001;
+
+    &.warn-light {
+      background-color: mat-color($warn, darker, 0.4);
+    }
+  }
 }
 
 .body-content {

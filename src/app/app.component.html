@@ -18,3 +18,11 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<button mat-fab
+        *ngIf="service.previousState"
+        color="warn"
+        class="undo-button mat-elevation-z12 warn-light"
+        (click)="undoLast()">
+  <mat-icon class="example-icon">undo</mat-icon>
+</button>

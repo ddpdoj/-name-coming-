@@ -1,4 +1,5 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { CoreService } from '../../core/services/core.service';
 import { Game } from '../../core/models/game.model';
@@ -9,7 +10,7 @@ import { DONATION_MILESTONES, PROSPERITY_MILESTONES } from '../../core/constants
   templateUrl: './prosperity.component.html',
   styleUrls: ['./prosperity.component.scss']
 })
-export class ProsperityComponent {
+export class ProsperityComponent implements OnDestroy {
 
   public prosperityMilestones = PROSPERITY_MILESTONES;
   public donationMilestones = DONATION_MILESTONES;
@@ -25,6 +26,7 @@ export class ProsperityComponent {
     ' - 070'
   ];
   private game: Game;
+  private subscription: Subscription;
   private _shopModifiers = [
     {rep: -20, mod: 5},
     {rep: -18, mod: 4},
@@ -134,6 +136,14 @@ export class ProsperityComponent {
     public service: CoreService
   ) {
     this.game = JSON.parse(JSON.stringify(this.service.game));
+
+    this.subscription = this.service.undoLastChange.subscribe(
+      () => this.game = JSON.parse(JSON.stringify(this.service.game))
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   public changeProsperity(increment: number): void {
@@ -145,6 +155,7 @@ export class ProsperityComponent {
     }
 
     this.game.prosperity = this.service.game['prosperity'] + increment;
+    this.service.previousState = JSON.parse(JSON.stringify(this.service.game));
     this.service.game = JSON.parse(JSON.stringify(this.game));
     this.changeDetector.detectChanges();
   }
@@ -158,6 +169,7 @@ export class ProsperityComponent {
     }
 
     this.game.reputation = this.service.game['reputation'] + increment;
+    this.service.previousState = JSON.parse(JSON.stringify(this.service.game));
     this.service.game = JSON.parse(JSON.stringify(this.game));
     this.changeDetector.detectChanges();
   }
@@ -196,6 +208,7 @@ export class ProsperityComponent {
       DONATION_MILESTONES.indexOf(this.game.donations) > -1) ?
       this.service.game['prosperity'] + 1 : this.service.game['prosperity'];
 
+    this.service.previousState = JSON.parse(JSON.stringify(this.service.game));
     this.service.game = JSON.parse(JSON.stringify(this.game));
     this.changeDetector.detectChanges();
   }

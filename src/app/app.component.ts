@@ -47,7 +47,7 @@ export class AppComponent {
       }
     });
 
-    service.subject.subscribe(
+    service.toggleSidenavState.subscribe(
       () => this.sideNavInstance.toggle()
     );
   }
@@ -77,6 +77,14 @@ export class AppComponent {
   public closeModal(): void {
     this.showModal = false;
     this.modalData = {};
+  }
+
+  public undoLast(): void {
+    this.service.game = JSON.parse(JSON.stringify(this.service.previousState));
+    this.service.previousState = null;
+
+    this.changeDetector.detectChanges();
+    this.service.undoLast();
   }
 
 }

@@ -1,21 +1,55 @@
 @import 'crimson-brown.scss';
 
+$cragheart: #cab465;
+$spellweaver: #473387;
+$scoundrel: #a4bb5c;
+$tinkerer: #967258;
+$brute: #193352;
+$mindthief: #02568c;
+
 body {
   margin: 0;
 }
 
 app-prosperity .mat-card-title {
   margin: 0;
-  color: mat-color($primary, darker);
 }
-mat-grid-tile .tile-center .rep-size .mat-button-wrapper {
-  position: relative;
-  bottom: 8px;
+mat-grid-tile {
+  &.mat-grid-tile.chips .mat-figure {
+    justify-content: inherit;
+  }
+  & .tile-center .rep-size .mat-button-wrapper {
+    position: relative;
+    bottom: 8px;
+  }
 }
-mat-card svg {
-  width: calc(11vw + 11vh);
-  height: calc(11vw + 11vh);;
-  font-size: inherit;
+mat-card.mat-card {
+  padding: 10px 16px;
+
+  & mat-card-header  mat-card-title {
+    color: mat-color($primary, darker);
+    margin: 0 -8px 16px;
+
+    &.details-title {
+      margin-top: 8px;
+    }
+  }
+  & svg {
+    width: calc(11vw + 11vh);
+    height: calc(11vw + 11vh);;
+    font-size: inherit;
+    position: relative;
+    left: -2px;
+  }
+  & mat-icon.class-icon {
+    position: relative;
+    top: 3px;
+
+    & svg {
+      height: 34px;
+      width: 34px;
+    }
+  }
 }
 mat-chip-list .mat-chip-list-wrapper {
   height: 100%;
@@ -25,6 +59,22 @@ mat-list mat-icon svg {
   width: 24px;
   height: 24px;
 }
+mat-form-field .mat-form-field-empty.mat-form-field-label {
+  color: mat-color($warn, lighter, 0.8);
+}
+mat-accordion {
+  & mat-expansion-panel .mat-expansion-panel-content.mat-expanded {
+    overflow-y: auto;
+  }
+  & .center-accordion {
+    text-align: center;
+    position: relative;
+    bottom: 20px;
+    font-size: 16px;
+    color: mat-color($warn, lighter);
+  }
+}
+
 
 .primary-light {
   background-color: mat-color($primary, lighter, 0.2);
@@ -43,6 +93,31 @@ mat-list mat-icon svg {
 }
 .warn-dark {
   background-color: mat-color($warn, darker);
+}
+.brute {
+  color: $brute;
+  opacity: 0.8;
+  fill: currentColor;
+}
+.cragheart {
+  color: $cragheart;
+  fill: currentColor;
+}
+.spellweaver {
+  color: $spellweaver;
+  fill: currentColor;
+}
+.scoundrel {
+  color: $scoundrel;
+  fill: currentColor;
+}
+.tinkerer {
+  color: $tinkerer;
+  fill: currentColor;
+}
+.mindthief {
+  color: $mindthief;
+  fill: currentColor;
 }
 .app-sidenav {
   min-width: 240px;

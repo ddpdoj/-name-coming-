@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { MatCardModule, MatGridListModule, MatChipsModule, MatExpansionModule } from '@angular/material';
 
 import { GlobalAchievementsComponent } from './global-achievements.component';
 
@@ -13,8 +14,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    CommonModule,
     RouterModule.forChild(routes),
-    CommonModule
+    MatCardModule,
+    MatGridListModule,
+    MatChipsModule,
+    MatExpansionModule
   ],
   declarations: [
     GlobalAchievementsComponent
